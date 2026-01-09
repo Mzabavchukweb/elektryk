@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Poznaj RSelectrics - zespół profesjonalnych elektryków z Gorzowa Wielkopolskiego. 15 lat doświadczenia, certyfikaty SEP, setki zadowolonych klientów.">
+  <title>O nas - RSelectrics | Profesjonalni Elektrycy Gorzów</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><rect width='1024' height='1024' fill='%230F1115'/><g transform='translate(120,230)'><path d='M30 250 C120 205, 205 205, 290 218 C360 228, 430 235, 520 235 C560 235, 585 230, 615 220 L620 242 C590 254, 560 260, 520 260 C430 260, 355 252, 285 242 C205 230, 125 232, 55 270 C45 276, 36 283, 26 290 L10 272 C17 263, 24 256, 30 250 Z' fill='%23FFC400'/><path d='M430 210 L500 210 L470 250 L610 250 L520 295 L550 260 L420 260 Z' fill='%23FFC400'/><path d='M120 320 L220 260 L320 260 L370 240 L470 240 L560 210 L700 210 L735 220 L760 240 L740 255 L715 245 L690 245 L660 265 L640 285 L600 305 L565 305 L535 320 L505 345 L445 345 L420 360 L430 395 L390 430 L330 430 L315 410 L345 385 L320 360 L270 390 L240 430 L195 430 L175 410 L205 365 L170 350 L120 375 L80 420 L40 420 L40 400 L75 360 L120 320 Z' fill='%23FFFFFF'/><path d='M250 305 L285 285 L315 312 L285 335 Z' fill='%230F1115'/><path d='M405 285 L450 270 L470 300 L430 315 Z' fill='%230F1115'/><path d='M560 250 L585 240 L605 262 L575 275 Z' fill='%230F1115'/><path d='M742 246 L758 238 L755 252 Z' fill='%230F1115'/></g></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-inner">
+          <div class="header-contact">
+            <a href="mailto:kontakt@elektromax-gorzow.pl" class="header-contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>kontakt@elektromax-gorzow.pl</span>
+            </a>
+            <a href="#" class="header-contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>ul. Elektryczna 15, 66-400 Gorzów Wlkp.</span>
+            </a>
+          </div>
+          <div class="header-social">
+            <a href="#" aria-label="Google Reviews">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="header-main">
+      <div class="container">
+        <div class="header-main-inner">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">
+              <img src="elektryk.png" alt="RSelectrics" width="160" height="160">
+            </div>
+          </a>
+          
+          <div class="nav">
+            <a href="index.html" class="nav-link">Strona główna</a>
+            <a href="o-nas.html" class="nav-link active">O nas</a>
+            <a href="uslugi.html" class="nav-link">Usługi</a>
+            <a href="realizacje.html" class="nav-link">Realizacje</a>
+            <a href="pogotowie.html" class="nav-link">Pogotowie</a>
+            <a href="kontakt.html" class="nav-link">Kontakt</a>
+          </div>
+          
+          <div class="header-cta">
+            <a href="kontakt.html" class="btn btn-primary">Bezpłatna wycena</a>
+          </div>
+          
+          <button class="menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <div class="mobile-nav-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <img src="elektryk.png" alt="RSelectrics" width="80" height="80">
+        </div>
+      </a>
+      <button class="mobile-nav-close" aria-label="Zamknij menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Strona główna</a>
+      <a href="o-nas.html" class="mobile-nav-link active">O nas</a>
+      <a href="uslugi.html" class="mobile-nav-link">Usługi</a>
+      <a href="realizacje.html" class="mobile-nav-link">Realizacje</a>
+      <a href="pogotowie.html" class="mobile-nav-link">Pogotowie</a>
+      <a href="kontakt.html" class="mobile-nav-link">Kontakt</a>
+    </div>
+    <div class="mobile-nav-contact">
+      <a href="tel:+48123456789">+48 123 456 789</a>
+      <a href="mailto:kontakt@elektromax-gorzow.pl">kontakt@elektromax-gorzow.pl</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero" data-section>
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=2000&q=80" alt="" class="hero-bg-image">
+      <div class="hero-bg-overlay"></div>
+    </div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-diagonal"></div>
+    
+    <div class="container">
+      <div class="hero-content" style="max-width: 800px;">
+        <div class="hero-overline animate-on-scroll">
+          <span class="hero-overline-line"></span>
+          <span class="hero-overline-text">O firmie RSelectrics</span>
+        </div>
+        
+        <h1 class="heading-display hero-title animate-on-scroll">
+          <span class="line">Poznaj nasz</span>
+          <span class="line"><span class="text-highlight">zespół</span></span>
+        </h1>
+        
+        <p class="hero-description animate-on-scroll">
+          15 lat doświadczenia w branży elektrycznej. Certyfikowani specjaliści SEP z pasją do swojej pracy. Poznaj ludzi, którzy stoją za sukcesem RSelectrics.
+        </p>
+        
+        <nav class="breadcrumb animate-on-scroll" style="margin-top: var(--space-6);">
+          <a href="index.html">Strona główna</a>
+          <span>/</span>
+          <span class="breadcrumb-current">O nas</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Separator -->
+  <div class="section-separator"></div>
+
+  <!-- About Section -->
+  <section class="section why-section" id="o-nas" data-section>
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-image animate-on-scroll">
+          <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Zespół RSelectrics przy pracy">
+          <div class="why-image-overlay"></div>
+        </div>
+        
+        <div class="why-content animate-on-scroll">
+          <span class="overline">Nasza historia</span>
+          <h2 class="heading-1">Od pasji do <span class="text-highlight">profesji</span></h2>
+          <p class="body-lg">RSelectrics powstało w 2010 roku z inicjatywy doświadczonego elektryka, który postanowił stworzyć firmę opartą na wartościach: profesjonalizmie, uczciwości i pełnym zaangażowaniu w potrzeby klienta.</p>
+          <p>Przez ponad 15 lat działalności zdobyliśmy zaufanie tysięcy klientów w Gorzowie Wielkopolskim i okolicach. Zaczynaliśmy jako jednoosobowa działalność, a dziś jesteśmy zespołem wykwalifikowanych specjalistów.</p>
+          
+          <div class="why-stats">
+            <div class="why-stat">
+              <div class="why-stat-value">15+</div>
+              <div class="why-stat-label">Lat doświadczenia</div>
+            </div>
+            <div class="why-stat">
+              <div class="why-stat-value">2000+</div>
+              <div class="why-stat-label">Zadowolonych klientów</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="section why-section" id="wartosci" data-section>
+    <div class="bracket-accent top-left"></div>
+    <div class="bracket-accent top-right"></div>
+    <div class="container">
+      <div class="services-header animate-on-scroll">
+        <span class="overline">Nasze wartości</span>
+        <h2 class="heading-1">Co nas <span class="text-highlight">wyróżnia</span></h2>
+        <p class="body-lg text-secondary">Wartości, które kierują naszą codzienną pracą</p>
+      </div>
+      
+      <div class="services-grid stagger-children animate-on-scroll">
+        <div class="service-card">
+          <div class="service-icon" style="background: linear-gradient(135deg, rgba(255, 196, 0, 0.2) 0%, rgba(255, 196, 0, 0.1) 100%);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="service-title">Bezpieczeństwo</h3>
+          <p class="service-description">Każda instalacja zgodna z normami. Stosujemy tylko sprawdzone materiały od renomowanych producentów.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Zgodność z normami</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Certyfikowane materiały</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Pełne zabezpieczenia</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon" style="background: linear-gradient(135deg, rgba(255, 196, 0, 0.2) 0%, rgba(255, 196, 0, 0.1) 100%);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="service-title">Jakość</h3>
+          <p class="service-description">Nie idziemy na kompromisy. Każdy projekt planowany i wykonywany z dbałością o detale.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Dbałość o detale</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Bez kompromisów</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Profesjonalne wykonanie</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon" style="background: linear-gradient(135deg, rgba(255, 196, 0, 0.2) 0%, rgba(255, 196, 0, 0.1) 100%);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="service-title">Uczciwość</h3>
+          <p class="service-description">Transparentne wyceny bez ukrytych kosztów. Zawsze informujemy o wszystkim co ma wpływ na projekt.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Transparentne ceny</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Brak ukrytych kosztów</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Pełna informacja</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon" style="background: linear-gradient(135deg, rgba(255, 196, 0, 0.2) 0%, rgba(255, 196, 0, 0.1) 100%);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="service-title">Terminowość</h3>
+          <p class="service-description">Szanujemy czas naszych klientów. Dotrzymujemy terminów i informujemy o zmianach.</p>
+          <div class="service-features">
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Punktualność</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Dotrzymywanie terminów</span>
+            </div>
+            <div class="service-feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Komunikacja zmian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Separator -->
+  <div class="section-separator"></div>
+
+  <!-- Team Section -->
+  <section class="section" id="zespol" data-section>
+    <div class="container">
+      <div class="services-header animate-on-scroll">
+        <span class="overline">Nasz zespół</span>
+        <h2 class="heading-1">Poznaj <span class="text-highlight">specjalistów</span></h2>
+        <p class="body-lg text-secondary">Certyfikowani elektrycy z wieloletnim doświadczeniem</p>
+      </div>
+      
+      <div class="services-grid stagger-children animate-on-scroll">
+        <div class="service-card">
+          <div class="service-icon">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Robert Szymański" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-full);">
+          </div>
+          <h3 class="service-title">Robert Szymański</h3>
+          <p class="service-description" style="color: var(--primary-500); font-weight: 600; margin-bottom: var(--space-2);">Właściciel / Główny elektryk</p>
+          <p class="service-description">20 lat doświadczenia. Certyfikat SEP do 1kV. Specjalizacja w instalacjach przemysłowych i smart home.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Michał Kowalski" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-full);">
+          </div>
+          <h3 class="service-title">Michał Kowalski</h3>
+          <p class="service-description" style="color: var(--primary-500); font-weight: 600; margin-bottom: var(--space-2);">Starszy elektryk</p>
+          <p class="service-description">12 lat doświadczenia. Ekspert od instalacji domowych i modernizacji. Certyfikat SEP.</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face" alt="Piotr Nowak" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-full);">
+          </div>
+          <h3 class="service-title">Piotr Nowak</h3>
+          <p class="service-description" style="color: var(--primary-500); font-weight: 600; margin-bottom: var(--space-2);">Elektryk / Serwisant</p>
+          <p class="service-description">8 lat doświadczenia. Specjalista od awarii i serwisu 24/7. Szybka diagnostyka.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Separator -->
+  <div class="section-separator"></div>
+
+  <!-- Certifications Section -->
+  <section class="section testimonials-section" id="certyfikaty" data-section>
+    <div class="bracket-accent top-left"></div>
+    <div class="bracket-accent top-right"></div>
+    <div class="container">
+      <div class="testimonials-header animate-on-scroll">
+        <span class="overline">Certyfikaty i uprawnienia</span>
+        <h2 class="heading-1">Gwarancja <span class="text-highlight">profesjonalizmu</span></h2>
+        
+        <div class="testimonials-badge">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary-500)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="testimonials-badge-content">
+            <div class="testimonials-badge-score">
+              <span>SEP</span>
+            </div>
+            <span class="testimonials-badge-count">Certyfikowani specjaliści</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonials-grid stagger-children animate-on-scroll">
+        <div class="testimonial-card">
+          <div class="testimonial-card-header">
+            <div style="width: 48px; height: 48px; background: var(--primary-500); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--surface-900)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="testimonial-info">
+              <div class="testimonial-name">Certyfikat SEP</div>
+              <div class="testimonial-date">Uprawnienia do 1kV</div>
+            </div>
+          </div>
+          <p class="testimonial-text">Świadectwo kwalifikacyjne SEP uprawniające do eksploatacji urządzeń, instalacji i sieci elektroenergetycznych o napięciu do 1 kV.</p>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-card-header">
+            <div style="width: 48px; height: 48px; background: var(--primary-500); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--surface-900)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="testimonial-info">
+              <div class="testimonial-name">Ubezpieczenie OC</div>
+              <div class="testimonial-date">Pełna ochrona</div>
+            </div>
+          </div>
+          <p class="testimonial-text">Posiadamy pełne ubezpieczenie odpowiedzialności cywilnej na kwotę do 1 000 000 PLN, chroniące zarówno nas jak i naszych klientów.</p>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-card-header">
+            <div style="width: 48px; height: 48px; background: var(--primary-500); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--surface-900)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="testimonial-info">
+              <div class="testimonial-name">Gwarancja pisemna</div>
+              <div class="testimonial-date">Do 5 lat</div>
+            </div>
+          </div>
+          <p class="testimonial-text">Na wszystkie wykonane prace udzielamy pisemnej gwarancji. Standardowo 2 lata, z możliwością rozszerzenia do 5 lat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="kontakt" data-section>
+    <div class="cta-bg">
+      <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=2000&q=80" alt="">
+    </div>
+    <div class="cta-diagonal"></div>
+    
+    <div class="container">
+      <div class="cta-content" style="text-align: center; flex-direction: column;">
+        <div class="cta-text animate-on-scroll" style="max-width: 100%;">
+          <h2>Potrzebujesz elektryka?</h2>
+          <p>Skontaktuj się z nami już dziś. Bezpłatna wycena i konsultacja.</p>
+        </div>
+        
+        <div class="cta-buttons animate-on-scroll" style="margin-top: var(--space-8); display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+          <a href="kontakt.html" class="btn btn-primary btn-lg">
+            Bezpłatna wycena
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="tel:+48123456789" class="btn btn-outline btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Zadzwoń teraz
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-accent"></div>
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">
+              <img src="elektryk.png" alt="RSelectrics" width="160" height="160">
+            </div>
+          </a>
+          <p class="footer-description">Profesjonalne usługi elektryczne dla klientów indywidualnych i biznesowych. 15 lat doświadczenia, certyfikowani specjaliści SEP.</p>
+          
+          <div class="footer-certificates">
+            <div class="footer-cert">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Certyfikat SEP</span>
+            </div>
+            <div class="footer-cert">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span>Gwarancja jakości</span>
+            </div>
+          </div>
+          
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" aria-label="Google Reviews" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-nav">
+          <h4 class="footer-nav-title">Nawigacja</h4>
+          <ul class="footer-nav-list">
+            <li><a href="index.html">Strona główna</a></li>
+            <li><a href="o-nas.html">O nas</a></li>
+            <li><a href="uslugi.html">Usługi</a></li>
+            <li><a href="realizacje.html">Realizacje</a></li>
+            <li><a href="pogotowie.html">Pogotowie</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4 class="footer-nav-title">Usługi</h4>
+          <ul class="footer-nav-list">
+            <li><a href="uslugi.html">Instalacje domowe</a></li>
+            <li><a href="uslugi.html">Obiekty komercyjne</a></li>
+            <li><a href="pogotowie.html">Awarie 24/7</a></li>
+            <li><a href="uslugi.html">Przeglądy i pomiary</a></li>
+            <li><a href="uslugi.html">Smart Home</a></li>
+            <li><a href="uslugi.html">Modernizacje</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact-section">
+          <h4 class="footer-nav-title">Kontakt</h4>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <div class="footer-contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="footer-contact-label">Telefon</div>
+                <div class="footer-contact-value"><a href="tel:+48123456789">+48 123 456 789</a></div>
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <div class="footer-contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="footer-contact-label">E-mail</div>
+                <div class="footer-contact-value"><a href="mailto:kontakt@elektromax-gorzow.pl">kontakt@elektromax-gorzow.pl</a></div>
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <div class="footer-contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="footer-contact-label">Adres</div>
+                <div class="footer-contact-value">ul. Elektryczna 15<br>66-400 Gorzów Wlkp.</div>
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <div class="footer-contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="footer-contact-label">Godziny pracy</div>
+                <div class="footer-contact-value">Pn-Pt: 8:00-18:00<br>Awarie: 24/7</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copyright">© 2026 RSelectrics Gorzów. Wszelkie prawa zastrzeżone.</p>
+          <div class="footer-legal">
+            <a href="#">Polityka prywatności</a>
+            <span class="footer-legal-separator">•</span>
+            <a href="#">Regulamin</a>
+            <span class="footer-legal-separator">•</span>
+            <a href="#">RODO</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Contact Button -->
+  <div class="floating-contact">
+    <a href="tel:+48123456789" class="floating-contact-btn" aria-label="Zadzwoń">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="floating-contact-badge">1</span>
+    </a>
+  </div>
+
+  <!-- Electric Cable Timeline -->
+  <nav class="cable-timeline" aria-label="Nawigacja sekcji">
+    <div class="cable-connector top">
+      <div class="connector-spark"></div>
+    </div>
+    
+    <div class="cable-container">
+      <div class="cable-outer"></div>
+      <div class="cable-inner">
+        <div class="cable-fill"></div>
+      </div>
+      <div class="cable-spark"></div>
+      
+      <div class="cable-markers">
+        <div class="cable-marker" data-target="#hero">
+          <span class="cable-marker-tooltip">Start</span>
+          <div class="cable-marker-dot"></div>
+        </div>
+        <div class="cable-marker" data-target="#o-nas">
+          <span class="cable-marker-tooltip">Historia</span>
+          <div class="cable-marker-dot"></div>
+        </div>
+        <div class="cable-marker" data-target="#wartosci">
+          <span class="cable-marker-tooltip">Wartości</span>
+          <div class="cable-marker-dot"></div>
+        </div>
+        <div class="cable-marker" data-target="#zespol">
+          <span class="cable-marker-tooltip">Zespół</span>
+          <div class="cable-marker-dot"></div>
+        </div>
+        <div class="cable-marker" data-target="#certyfikaty">
+          <span class="cable-marker-tooltip">Certyfikaty</span>
+          <div class="cable-marker-dot"></div>
+        </div>
+        <div class="cable-marker" data-target="#kontakt">
+          <span class="cable-marker-tooltip">Kontakt</span>
+          <div class="cable-marker-dot"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cable-connector bottom"></div>
+    <span class="cable-progress">0%</span>
+  </nav>
+
+  <!-- Particles -->
+  <div class="particles-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
