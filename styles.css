@@ -181,6 +181,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -191,6 +193,8 @@ body {
   color: var(--text-primary);
   background: var(--surface-900);
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 img, video, svg {
@@ -284,6 +288,7 @@ ul, ol {
 .section {
   padding: var(--space-24) 0;
   position: relative;
+  overflow-x: hidden;
 }
 
 .section-sm {
@@ -1186,6 +1191,7 @@ ul, ol {
   top: -200px;
   right: -200px;
   pointer-events: none;
+  max-width: 100vw;
 }
 
 /* Hero Layout - Two Columns */
@@ -2143,7 +2149,7 @@ ul, ol {
   background: var(--surface-700);
   border: 1px solid var(--surface-500);
   border-radius: var(--radius-lg);
-  margin-bottom: var(--space-6);
+  margin: 0 auto var(--space-6);
   color: var(--primary-500);
   transition: all var(--duration-normal);
 }
@@ -4226,6 +4232,7 @@ ul, ol {
 }
 
 .service-area-town {
+  display: block;
   background: var(--surface-700);
   border: 1px solid var(--surface-500);
   border-radius: var(--radius-lg);
@@ -4234,8 +4241,9 @@ ul, ol {
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   color: var(--text-primary);
+  text-decoration: none;
   transition: all var(--duration-fast);
-  cursor: default;
+  cursor: pointer;
 }
 
 .service-area-town:hover {
@@ -4457,9 +4465,9 @@ ul, ol {
 
 .process-workflow-arrow {
   position: absolute;
-  right: -24px;
+  right: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(50%);
   width: 32px;
   height: 32px;
   display: flex;
@@ -4467,6 +4475,7 @@ ul, ol {
   justify-content: center;
   color: var(--primary-500);
   z-index: 1;
+  pointer-events: none;
 }
 
 .process-workflow-arrow svg {
@@ -4580,5 +4589,40 @@ ul, ol {
   
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   GLOBAL OVERFLOW PROTECTION
+   ============================================ */
+
+/* Prevent horizontal scroll caused by long text/URLs */
+.footer-contact-value a,
+.header-contact-item span,
+.testimonial-text,
+.service-description,
+.hero-description {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Ensure flex children can shrink properly */
+.services-grid > *,
+.testimonials-grid > *,
+.portfolio-grid > *,
+.process-workflow-grid > *,
+.service-area-towns > * {
+  min-width: 0;
+}
+
+/* Mobile overflow protection */
+@media (max-width: 768px) {
+  .hero-glow,
+  .bracket-accent {
+    display: none;
+  }
+  
+  .process-workflow-arrow {
+    display: none !important;
   }
 }

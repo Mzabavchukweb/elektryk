@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCableTimeline();
   initForms();
   initParticles();
+  initCityPrefill();
 });
 
 /* ============================================
@@ -543,3 +544,57 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 })();
+
+/* ============================================
+   CITY PREFILL FROM URL PARAMETER
+   ============================================ */
+
+function initCityPrefill() {
+  // Mapping slug -> full city name
+  const cityMap = {
+    'gorzow-wielkopolski': 'Gorzów Wielkopolski',
+    'kostrzyn-nad-odra': 'Kostrzyn nad Odrą',
+    'strzelce-krajenskie': 'Strzelce Krajeńskie',
+    'miedzyrzecz': 'Międzyrzecz',
+    'sulecin': 'Sulęcin',
+    'skwierzyna': 'Skwierzyna',
+    'debno': 'Dębno',
+    'mysliborz': 'Myślibórz',
+    'drezdenko': 'Drezdenko',
+    'witnica': 'Witnica',
+    'slubice': 'Słubice',
+    'rzepin': 'Rzepin'
+  };
+
+  // Get ?miasto= parameter from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const miastoSlug = urlParams.get('miasto');
+
+  if (!miastoSlug) return;
+
+  const cityName = cityMap[miastoSlug];
+  if (!cityName) return;
+
+  // Find subject input field and prefill it
+  const subjectInput = document.querySelector('input[name="subject"]');
+  if (subjectInput) {
+    const currentValue = subjectInput.value.trim();
+    const prefix = `Miasto: ${cityName}`;
+    
+    // Only add prefix if not already present
+    if (!currentValue.startsWith('Miasto:')) {
+      subjectInput.value = currentValue ? `${prefix}\n${currentValue}` : prefix;
+    }
+  }
+
+  // Also try textarea if exists
+  const messageTextarea = document.querySelector('textarea[name="message"], textarea[name="wiadomosc"]');
+  if (messageTextarea) {
+    const currentValue = messageTextarea.value.trim();
+    const prefix = `Miasto: ${cityName}`;
+    
+    if (!currentValue.startsWith('Miasto:')) {
+      messageTextarea.value = currentValue ? `${prefix}\n${currentValue}` : prefix;
+    }
+  }
+}
