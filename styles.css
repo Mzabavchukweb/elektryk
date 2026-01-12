@@ -3245,7 +3245,8 @@ section#realizacje {
   }
   
   .hero {
-    padding-top: calc(var(--header-height) + 10px);
+    padding-top: calc(var(--header-height) + 20px);
+    padding-bottom: var(--space-12);
   }
   
   .hero-grid-layout {
@@ -3254,7 +3255,9 @@ section#realizacje {
   }
   
   .hero-content {
-    max-width: 100%;
+    max-width: 800px !important;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
   }
   
@@ -3266,6 +3269,20 @@ section#realizacje {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+  }
+  
+  .breadcrumb {
+    justify-content: center;
+  }
+  
+  .portfolio-header {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .portfolio-header-content {
+    max-width: 100%;
+    margin: 0 auto;
   }
   
   .hero-features {
@@ -3496,8 +3513,16 @@ section#realizacje {
   
   .portfolio-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: var(--space-4);
+  }
+  
+  .portfolio-header-content {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
   }
   
   .bracket-accent {
