@@ -1103,11 +1103,24 @@ ul, ol {
   border: 1px solid var(--surface-600);
   border-radius: var(--radius-lg);
   transition: all var(--duration-normal);
+  text-decoration: none;
+  color: inherit;
 }
 
 .hero-feature:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--surface-500);
+}
+
+a.hero-feature {
+  cursor: pointer;
+}
+
+a.hero-feature:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--primary-500);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
 }
 
 .hero-feature-icon {
