@@ -2313,16 +2313,9 @@ ul, ol {
   gap: var(--space-6);
 }
 
-/* Portfolio section - reduced spacing */
+/* Remove bottom padding from portfolio section before footer */
 section#realizacje {
-  padding-top: var(--space-10) !important;
   padding-bottom: 0 !important;
-}
-
-/* Reduce section separator before portfolio */
-.hero + .section-separator {
-  height: var(--space-4);
-  margin-bottom: 0;
 }
 
 .portfolio-card {
@@ -3254,11 +3247,21 @@ section#realizacje {
   
   .hero {
     padding-top: var(--header-height);
-    padding-bottom: var(--space-12);
+    padding-bottom: var(--space-4);
   }
   
   .hero .container {
     padding-top: var(--space-8);
+  }
+  
+  /* Zmniejsz separator po hero na realizacje */
+  .hero + .section-separator {
+    height: var(--space-4);
+  }
+  
+  /* Zmniejsz padding-top sekcji portfolio */
+  section#realizacje {
+    padding-top: var(--space-6) !important;
   }
   
   .hero-grid-layout {
@@ -3346,7 +3349,6 @@ section#realizacje {
   }
   
   section#realizacje {
-    padding-top: var(--space-8) !important;
     padding-bottom: 0 !important;
   }
   
@@ -3378,7 +3380,6 @@ section#realizacje {
   }
   
   section#realizacje {
-    padding-top: var(--space-6) !important;
     padding-bottom: 0 !important;
   }
   
@@ -3414,11 +3415,21 @@ section#realizacje {
   .hero {
     min-height: auto;
     padding-top: var(--header-height);
-    padding-bottom: var(--space-12);
+    padding-bottom: var(--space-4);
   }
   
   .hero .container {
     padding-top: var(--space-6);
+  }
+  
+  /* Zmniejsz separator po hero na realizacje */
+  .hero + .section-separator {
+    height: var(--space-3);
+  }
+  
+  /* Zmniejsz padding-top sekcji portfolio */
+  section#realizacje {
+    padding-top: var(--space-4) !important;
   }
   
   .hero-buttons {
