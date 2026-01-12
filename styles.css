@@ -3245,7 +3245,7 @@ section#realizacje {
   }
   
   .hero {
-    padding-top: calc(var(--header-height) + 20px);
+    padding-top: var(--header-height);
     padding-bottom: var(--space-12);
   }
   
@@ -3399,7 +3399,7 @@ section#realizacje {
   
   .hero {
     min-height: auto;
-    padding-top: calc(var(--header-height) + 20px);
+    padding-top: var(--header-height);
     padding-bottom: var(--space-12);
   }
   
@@ -3593,7 +3593,7 @@ section#realizacje {
   }
   
   .hero {
-    padding-top: calc(var(--header-height) + 15px);
+    padding-top: var(--header-height);
   }
   
   .hero-feature {
