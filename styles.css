@@ -885,10 +885,21 @@ ul, ol {
   border-left: 3px solid var(--primary-500);
 }
 
+.mobile-nav-cta {
+  padding: var(--space-6) var(--space-4);
+  border-top: 1px solid var(--surface-600);
+  border-bottom: 1px solid var(--surface-600);
+  flex-shrink: 0;
+}
+
+.mobile-nav-cta .btn {
+  width: 100%;
+  justify-content: center;
+}
+
 .mobile-nav-contact {
   margin-top: auto;
   padding-top: var(--space-6);
-  border-top: 1px solid var(--surface-600);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -3242,26 +3253,22 @@ section#realizacje {
   }
   
   .header-cta {
-    display: none;
+    display: flex;
+  }
+  
+  .header-cta .btn-primary {
+    font-size: var(--text-xs);
+    padding: var(--space-2) var(--space-3);
+    white-space: nowrap;
   }
   
   .hero {
     padding-top: var(--header-height);
-    padding-bottom: var(--space-4);
+    padding-bottom: var(--space-12);
   }
   
   .hero .container {
     padding-top: var(--space-8);
-  }
-  
-  /* Zmniejsz separator po hero na realizacje */
-  .hero + .section-separator {
-    height: var(--space-4);
-  }
-  
-  /* Zmniejsz padding-top sekcji portfolio */
-  section#realizacje {
-    padding-top: var(--space-6) !important;
   }
   
   .hero-grid-layout {
@@ -3409,27 +3416,23 @@ section#realizacje {
   }
   
   .header-cta {
-    display: none;
+    display: flex;
+  }
+  
+  .header-cta .btn-primary {
+    font-size: var(--text-xs);
+    padding: var(--space-2) var(--space-3);
+    white-space: nowrap;
   }
   
   .hero {
     min-height: auto;
     padding-top: var(--header-height);
-    padding-bottom: var(--space-4);
+    padding-bottom: var(--space-12);
   }
   
   .hero .container {
     padding-top: var(--space-6);
-  }
-  
-  /* Zmniejsz separator po hero na realizacje */
-  .hero + .section-separator {
-    height: var(--space-3);
-  }
-  
-  /* Zmniejsz padding-top sekcji portfolio */
-  section#realizacje {
-    padding-top: var(--space-4) !important;
   }
   
   .hero-buttons {
