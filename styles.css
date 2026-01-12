@@ -907,20 +907,41 @@ ul, ol {
 }
 
 .mobile-nav-contact a {
-  color: var(--text-secondary);
-  font-size: var(--text-base);
-  padding: var(--space-3);
+  color: var(--text-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  padding: var(--space-4);
+  background: var(--surface-700);
+  border: 1px solid var(--surface-600);
   border-radius: var(--radius-md);
   transition: all var(--duration-fast);
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  min-height: 44px;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  text-align: center;
+}
+
+.mobile-nav-contact a[href^="tel"] {
+  color: var(--primary-500);
+  background: var(--surface-800);
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.1);
 }
 
 .mobile-nav-contact a:hover {
-  color: var(--primary-500);
+  background: var(--surface-600);
+  border-color: var(--surface-400);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.mobile-nav-contact a[href^="tel"]:hover {
   background: var(--surface-700);
+  border-color: var(--primary-400);
+  color: var(--primary-400);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2), var(--shadow-glow);
 }
 
 /* ============================================
