@@ -4177,8 +4177,8 @@ section#realizacje {
     margin-bottom: var(--space-3);
   }
   
-  /* Contact data (phone, email, address) - more prominent */
-  #dane .service-description[style*="color: var(--primary-500)"] {
+  /* Contact data (phone, email, address) - more prominent - first service-description in each card */
+  #dane .service-card .service-description:first-of-type {
     font-size: var(--text-xl) !important;
     font-weight: 700 !important;
     color: var(--primary-500) !important;
@@ -4186,6 +4186,7 @@ section#realizacje {
     letter-spacing: 0.02em;
     word-break: break-word;
     overflow-wrap: break-word;
+    line-height: 1.4;
   }
   
   /* Hero features - contact info in hero */
@@ -4254,12 +4255,12 @@ section#realizacje {
   }
   
   /* Contact data - even larger on small phones */
-  #dane .service-description[style*="color: var(--primary-500)"] {
+  #dane .service-card .service-description:first-of-type {
     font-size: var(--text-lg) !important;
-    line-height: 1.4 !important;
+    line-height: 1.5 !important;
   }
   
-  #dane .service-description:not([style*="color: var(--primary-500)"]) {
+  #dane .service-card .service-description:not(:first-of-type) {
     font-size: var(--text-sm);
   }
   
