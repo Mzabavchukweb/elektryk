@@ -4140,3 +4140,147 @@ section#realizacje {
 .highlight-link { color: var(--primary-500); font-size: var(--text-sm); text-decoration: underline; }
 .highlight-text { color: var(--primary-500); font-weight: 600; }
 .icon-circle { width: 48px; height: 48px; background: var(--primary-500); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; }
+
+/* ============================================
+   CONTACT PAGE MOBILE OPTIMIZATION
+   ============================================ */
+
+/* Contact Info Cards - Mobile Optimization */
+@media (max-width: 768px) {
+  /* Service cards with contact info */
+  #dane .service-card {
+    text-align: center;
+    padding: var(--space-6);
+  }
+  
+  #dane .service-icon {
+    margin: 0 auto var(--space-5);
+    width: 56px;
+    height: 56px;
+  }
+  
+  #dane .service-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  #dane .service-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+  
+  #dane .service-description {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+  
+  /* Contact data (phone, email, address) - more prominent */
+  #dane .service-description[style*="color: var(--primary-500)"] {
+    font-size: var(--text-xl) !important;
+    font-weight: 700 !important;
+    color: var(--primary-500) !important;
+    margin-bottom: var(--space-2) !important;
+    letter-spacing: 0.02em;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Hero features - contact info in hero */
+  .hero-feature {
+    text-align: left;
+    padding: var(--space-4);
+  }
+  
+  .hero-feature-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  
+  .hero-feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .hero-feature-content {
+    font-size: var(--text-base);
+  }
+  
+  .hero-feature-content strong {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--primary-500);
+    display: block;
+    margin-bottom: var(--space-1);
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Map section - responsive height */
+  #mapa .animate-on-scroll {
+    height: 300px !important;
+  }
+  
+  /* Services header - better spacing on mobile */
+  #dane .services-header,
+  #mapa .services-header {
+    margin-bottom: var(--space-10);
+  }
+}
+
+/* Small Mobile - Extra Optimization */
+@media (max-width: 480px) {
+  #dane .service-card {
+    padding: var(--space-5);
+  }
+  
+  #dane .service-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-4);
+  }
+  
+  #dane .service-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  #dane .service-title {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-3);
+  }
+  
+  /* Contact data - even larger on small phones */
+  #dane .service-description[style*="color: var(--primary-500)"] {
+    font-size: var(--text-lg) !important;
+    line-height: 1.4 !important;
+  }
+  
+  #dane .service-description:not([style*="color: var(--primary-500)"]) {
+    font-size: var(--text-sm);
+  }
+  
+  .hero-feature {
+    padding: var(--space-3);
+  }
+  
+  .hero-feature-icon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .hero-feature-content {
+    font-size: var(--text-sm);
+  }
+  
+  .hero-feature-content strong {
+    font-size: var(--text-base);
+  }
+  
+  #mapa .animate-on-scroll {
+    height: 250px !important;
+  }
+}
