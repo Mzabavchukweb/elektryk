@@ -1103,24 +1103,11 @@ ul, ol {
   border: 1px solid var(--surface-600);
   border-radius: var(--radius-lg);
   transition: all var(--duration-normal);
-  text-decoration: none;
-  color: inherit;
 }
 
 .hero-feature:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--surface-500);
-}
-
-a.hero-feature {
-  cursor: pointer;
-}
-
-a.hero-feature:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--primary-500);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
 }
 
 .hero-feature-icon {
@@ -3354,6 +3341,17 @@ section#realizacje {
   .hero-features {
     max-width: 500px;
     margin: 0 auto;
+    align-items: center;
+  }
+  
+  .hero-feature {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-feature-content {
+    text-align: center;
+    width: 100%;
   }
   
   .hero-buttons {
@@ -3680,39 +3678,20 @@ section#realizacje {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: var(--space-6);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--surface-500);
   }
   
   .hero-feature-icon {
     margin: 0 auto;
-    width: 56px;
-    height: 56px;
-    background: var(--surface-700);
-    border-color: var(--primary-500);
-  }
-  
-  .hero-feature-icon svg {
-    width: 28px;
-    height: 28px;
   }
   
   .hero-feature-content {
-    font-size: var(--text-base);
-    margin-top: var(--space-3);
+    text-align: center;
+    width: 100%;
   }
   
   .hero-feature-content strong {
-    font-size: var(--text-xl);
-    font-weight: var(--font-bold);
-    color: var(--text-primary);
     display: block;
-  }
-  
-  .hero-features {
-    gap: var(--space-5);
-    max-width: 100%;
+    text-align: center;
   }
 }
 
@@ -3766,6 +3745,31 @@ section#realizacje {
     min-height: 44px;
   }
   
+  .hero-features {
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-feature {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .hero-feature-content {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-feature-content strong {
+    text-align: center;
+    display: block;
+  }
+  
   .testimonial-text {
     font-size: var(--text-lg);
   }
@@ -3781,28 +3785,6 @@ section#realizacje {
   
   .testimonial-rating {
     margin-left: 0;
-  }
-  
-  .hero-feature {
-    padding: var(--space-6) var(--space-5);
-  }
-  
-  .hero-feature-icon {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .hero-feature-icon svg {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .hero-feature-content strong {
-    font-size: var(--text-2xl);
-  }
-  
-  .hero-features {
-    gap: var(--space-6);
   }
 }
 
