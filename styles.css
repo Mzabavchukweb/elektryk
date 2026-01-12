@@ -3281,7 +3281,8 @@ section#realizacje {
   }
   
   .header-main-inner {
-    padding-right: var(--space-4);
+    padding-right: var(--space-6);
+    gap: var(--space-4);
   }
   
   .logo-icon {
@@ -3453,6 +3454,23 @@ section#realizacje {
 --text-7xl: 3.5rem;
   }
   
+  .header-main-inner {
+    padding-right: var(--space-6);
+    gap: var(--space-3);
+  }
+  
+  .logo-icon {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .menu-toggle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    flex-shrink: 0;
+  }
+  
   .hero-feature {
     flex-direction: column;
     text-align: center;
@@ -3460,18 +3478,6 @@ section#realizacje {
   
   .hero-feature-icon {
     margin: 0 auto;
-  }
-}
-
-/* Very Small Phones (iPhone SE, etc.) - Improved touch target and spacing */
-@media (max-width: 400px) {
-  .header-main-inner {
-    padding-right: var(--space-4);
-  }
-  
-  .menu-toggle {
-    min-width: 44px;
-    min-height: 44px;
   }
 }
 
@@ -3490,6 +3496,11 @@ section#realizacje {
 }
 
 @media (max-width: 640px) {
+  .header-main-inner {
+    padding-right: var(--space-6);
+    gap: var(--space-4);
+  }
+  
   .logo-icon {
     width: 120px;
     height: 120px;
