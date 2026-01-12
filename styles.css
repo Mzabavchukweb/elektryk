@@ -920,7 +920,8 @@ ul, ol {
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
   padding-top: var(--header-height);
   padding-bottom: var(--space-16);
   overflow: hidden;
@@ -3249,6 +3250,10 @@ section#realizacje {
     padding-bottom: var(--space-12);
   }
   
+  .hero .container {
+    padding-top: var(--space-8);
+  }
+  
   .hero-grid-layout {
     grid-template-columns: 1fr;
     gap: var(--space-10);
@@ -3401,6 +3406,10 @@ section#realizacje {
     min-height: auto;
     padding-top: var(--header-height);
     padding-bottom: var(--space-12);
+  }
+  
+  .hero .container {
+    padding-top: var(--space-6);
   }
   
   .hero-buttons {
@@ -3594,6 +3603,10 @@ section#realizacje {
   
   .hero {
     padding-top: var(--header-height);
+  }
+  
+  .hero .container {
+    padding-top: var(--space-4);
   }
   
   .hero-feature {
