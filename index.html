@@ -11,15 +11,21 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://elektrykgorzow.com/">
   <meta property="og:image" content="https://elektrykgorzow.com/elektryk.png">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="RS ELECTRICS">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Elektryk Gorzów Wielkopolski – RS ELECTRICS">
+  <meta name="twitter:description" content="Instalacje elektryczne, pomiary SEP, modernizacje. Domy i firmy. Dojazd do 70 km.">
+  <meta name="twitter:image" content="https://elektrykgorzow.com/elektryk.png">
   <title>Elektryk Gorzów Wielkopolski – Instalacje i Pogotowie | RS ELECTRICS</title>
   
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><rect width='1024' height='1024' fill='%230F1115'/><g transform='translate(120,230)'><path d='M30 250 C120 205, 205 205, 290 218 C360 228, 430 235, 520 235 C560 235, 585 230, 615 220 L620 242 C590 254, 560 260, 520 260 C430 260, 355 252, 285 242 C205 230, 125 232, 55 270 C45 276, 36 283, 26 290 L10 272 C17 263, 24 256, 30 250 Z' fill='%23FFC400'/><path d='M430 210 L500 210 L470 250 L610 250 L520 295 L550 260 L420 260 Z' fill='%23FFC400'/><path d='M120 320 L220 260 L320 260 L370 240 L470 240 L560 210 L700 210 L735 220 L760 240 L740 255 L715 245 L690 245 L660 265 L640 285 L600 305 L565 305 L535 320 L505 345 L445 345 L420 360 L430 395 L390 430 L330 430 L315 410 L345 385 L320 360 L270 390 L240 430 L195 430 L175 410 L205 365 L170 350 L120 375 L80 420 L40 420 L40 400 L75 360 L120 320 Z' fill='%23FFFFFF'/><path d='M250 305 L285 285 L315 312 L285 335 Z' fill='%230F1115'/><path d='M405 285 L450 270 L470 300 L430 315 Z' fill='%230F1115'/><path d='M560 250 L585 240 L605 262 L575 275 Z' fill='%230F1115'/><path d='M742 246 L758 238 L755 252 Z' fill='%230F1115'/></g></svg>">
   
-  <!-- Fonts -->
+  <!-- Fonts (reduced weights, font-display: swap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
   
@@ -221,7 +227,7 @@
   <!-- Hero Section -->
   <section class="hero" id="hero" data-section>
     <div class="hero-bg">
-      <img src="assets/img/WhatsApp Image 2026-01-11 at 21.45.15.webp" alt="Instalacja elektryczna – Elektryk Gorzów Wielkopolski" class="hero-bg-image" fetchpriority="high" decoding="async">
+      <img src="assets/img/WhatsApp Image 2026-01-11 at 21.45.15.webp" alt="Instalacja elektryczna – Elektryk Gorzów Wielkopolski" class="hero-bg-image" width="1600" height="900" fetchpriority="high" decoding="async">
       <div class="hero-bg-overlay"></div>
     </div>
     <div class="hero-grid"></div>
@@ -277,20 +283,20 @@
           
           <form action="#" method="POST">
             <div class="form-group">
-              <label class="form-label">Imię i nazwisko</label>
-              <input type="text" name="name" class="form-input" placeholder="Jan Kowalski" autocomplete="name" required>
+              <label class="form-label" for="hero-name">Imię i nazwisko</label>
+              <input type="text" id="hero-name" name="name" class="form-input" placeholder="Jan Kowalski" autocomplete="name" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Numer telefonu</label>
-              <input type="tel" name="phone" class="form-input" placeholder="np. 600 000 000" autocomplete="tel" required>
+              <label class="form-label" for="hero-phone">Numer telefonu</label>
+              <input type="tel" id="hero-phone" name="phone" class="form-input" placeholder="np. 600 000 000" autocomplete="tel" required>
             </div>
             <div class="form-group">
-              <label class="form-label">E-mail</label>
-              <input type="email" name="email" class="form-input" placeholder="jan@example.pl" autocomplete="email" required>
+              <label class="form-label" for="hero-email">E-mail</label>
+              <input type="email" id="hero-email" name="email" class="form-input" placeholder="jan@example.pl" autocomplete="email" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Czego dotyczy zapytanie?</label>
-              <input type="text" name="subject" class="form-input" placeholder="np. Instalacja w domu 120m²">
+              <label class="form-label" for="hero-subject">Czego dotyczy zapytanie?</label>
+              <input type="text" id="hero-subject" name="subject" class="form-input" placeholder="np. Instalacja w domu 120m²" autocomplete="off">
             </div>
             <label class="form-checkbox">
               <input type="checkbox" name="privacy" required>
@@ -410,7 +416,7 @@
           <div class="service-category-banner">
             <h3 class="service-category-banner-title">Elektryk</h3>
           </div>
-          <img src="assets/img/zdjecie realizacje home1.webp" alt="Elektryk – pogotowie i awarie" class="service-category-image" loading="lazy" decoding="async">
+          <img src="assets/img/zdjecie realizacje home1.webp" alt="Elektryk – pogotowie i awarie" class="service-category-image" width="400" height="200" loading="lazy" decoding="async">
           <div class="service-category-content">
             <ul class="service-category-list">
               <li class="service-category-list-item">Pogotowie elektryczne</li>
@@ -429,7 +435,7 @@
           <div class="service-category-banner">
             <h3 class="service-category-banner-title">Usługi elektryczne</h3>
           </div>
-          <img src="assets/img/zdjecie realizacje home2.webp" alt="Usługi elektryczne – instalacje i montaż" class="service-category-image" loading="lazy" decoding="async">
+          <img src="assets/img/zdjecie realizacje home2.webp" alt="Usługi elektryczne – instalacje i montaż" class="service-category-image" width="400" height="200" loading="lazy" decoding="async">
           <div class="service-category-content">
             <ul class="service-category-list">
               <li class="service-category-list-item">Instalacje elektryczne</li>
@@ -454,7 +460,7 @@
           <div class="service-category-banner">
             <h3 class="service-category-banner-title">OŚWIETLENIE</h3>
           </div>
-          <img src="assets/img/zdjecie realizacje home3.webp" alt="Oświetlenie LED i instalacje" class="service-category-image" loading="lazy" decoding="async">
+          <img src="assets/img/zdjecie realizacje home3.webp" alt="Oświetlenie LED i instalacje" class="service-category-image" width="400" height="200" loading="lazy" decoding="async">
           <div class="service-category-content">
             <ul class="service-category-list">
               <li class="service-category-list-item">Oświetlenie LED</li>
@@ -723,7 +729,7 @@
       
       <div class="portfolio-grid stagger-children animate-on-scroll">
         <div class="portfolio-card">
-          <img src="assets/img/zdjecie realizacje home1.webp" alt="Instalacja elektryczna w domu jednorodzinnym – Elektryk Gorzów Wielkopolski" loading="lazy" decoding="async">
+          <img src="assets/img/zdjecie realizacje home1.webp" alt="Instalacja elektryczna w domu jednorodzinnym – Elektryk Gorzów Wielkopolski" width="400" height="300" loading="lazy" decoding="async">
           <div class="portfolio-card-overlay">
             <h3 class="portfolio-card-title">Dom jednorodzinny 180m²</h3>
             <span class="portfolio-card-category">Instalacja kompletna</span>
@@ -731,7 +737,7 @@
         </div>
         
         <div class="portfolio-card">
-          <img src="assets/img/zdjecie realizacje home2.webp" alt="Instalacja elektryczna w biurze – Elektryk Gorzów" loading="lazy" decoding="async">
+          <img src="assets/img/zdjecie realizacje home2.webp" alt="Instalacja elektryczna w biurze – Elektryk Gorzów" width="400" height="300" loading="lazy" decoding="async">
           <div class="portfolio-card-overlay">
             <h3 class="portfolio-card-title">Biuro open space 400m²</h3>
             <span class="portfolio-card-category">Instalacja komercyjna</span>
@@ -739,7 +745,7 @@
         </div>
         
         <div class="portfolio-card">
-          <img src="assets/img/zdjecie realizacje home3.webp" alt="Montaż rozdzielnicy elektrycznej – elektryk Gorzów" loading="lazy" decoding="async">
+          <img src="assets/img/zdjecie realizacje home3.webp" alt="Montaż rozdzielnicy elektrycznej – elektryk Gorzów" width="400" height="300" loading="lazy" decoding="async">
           <div class="portfolio-card-overlay">
             <h3 class="portfolio-card-title">Hala produkcyjna 2000m²</h3>
             <span class="portfolio-card-category">Instalacja przemysłowa</span>
@@ -803,18 +809,18 @@
           <h3 class="service-area-box-title">Miejscowości, w których wykonujemy instalacje elektryczne:</h3>
           
           <div class="service-area-towns">
-            <a href="/elektryk-gorzow-wielkopolski/" class="service-area-town">Gorzów Wielkopolski</a>
-            <a href="/elektryk-kostrzyn-nad-odra/" class="service-area-town">Kostrzyn nad Odrą</a>
-            <a href="/elektryk-strzelce-krajenskie/" class="service-area-town">Strzelce Krajeńskie</a>
-            <a href="/elektryk-miedzyrzecz/" class="service-area-town">Międzyrzecz</a>
-            <a href="/elektryk-sulecin/" class="service-area-town">Sulęcin</a>
-            <a href="/elektryk-skwierzyna/" class="service-area-town">Skwierzyna</a>
-            <a href="/elektryk-debno/" class="service-area-town">Dębno</a>
-            <a href="/elektryk-mysliborz/" class="service-area-town">Myślibórz</a>
-            <a href="/elektryk-drezdenko/" class="service-area-town">Drezdenko</a>
-            <a href="/elektryk-witnica/" class="service-area-town">Witnica</a>
-            <a href="/elektryk-slubice/" class="service-area-town">Słubice</a>
-            <a href="/elektryk-rzepin/" class="service-area-town">Rzepin</a>
+            <span class="service-area-town">Gorzów Wielkopolski</span>
+            <span class="service-area-town">Kostrzyn nad Odrą</span>
+            <span class="service-area-town">Strzelce Krajeńskie</span>
+            <span class="service-area-town">Międzyrzecz</span>
+            <span class="service-area-town">Sulęcin</span>
+            <span class="service-area-town">Skwierzyna</span>
+            <span class="service-area-town">Dębno</span>
+            <span class="service-area-town">Myślibórz</span>
+            <span class="service-area-town">Drezdenko</span>
+            <span class="service-area-town">Witnica</span>
+            <span class="service-area-town">Słubice</span>
+            <span class="service-area-town">Rzepin</span>
           </div>
           
           <p class="service-area-note">...oraz wszystkie miejscowości w promieniu 70 km od Gorzowa Wielkopolskiego</p>
@@ -985,7 +991,7 @@
               </div>
               <div>
                 <div class="footer-contact-label">Godziny pracy</div>
-                <div class="footer-contact-value">Pn-Pt: 8:00-18:00<br>Awarie</div>
+                <div class="footer-contact-value">Pn-Pt: 8:00-18:00</div>
               </div>
             </div>
             <div class="footer-contact-item">
