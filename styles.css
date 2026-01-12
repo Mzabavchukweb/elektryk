@@ -1,5 +1,5 @@
 /* ============================================
-   ELEKTROMAX - PROFESSIONAL DESIGN SYSTEM
+   RS ELECTRICS - PROFESSIONAL DESIGN SYSTEM
    Style: Dark Modern Electric Premium
    ============================================ */
 
@@ -423,16 +423,34 @@ ul, ol {
 }
 
 .form-input,
-.form-textarea,
+.form-textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-700);
+  border: 2px solid var(--surface-500);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
 .form-input::placeholder,
 .form-textarea::placeholder {
   color: var(--text-muted);
 }
 
 .form-input:hover,
-.form-textarea:hover,
+.form-textarea:hover {
+  border-color: var(--surface-400);
+}
+
 .form-input:focus,
-.form-textarea:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px var(--glow-soft);
+}
+
 /* Input States */
 .form-input-error {
   border-color: var(--error-500);
@@ -1628,6 +1646,10 @@ ul, ol {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
   }
   
   .cable-fill::before,
@@ -3916,20 +3938,7 @@ section#realizacje {
 }
 
 /* CTA Phone Button */
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  html {
-    scroll-behavior: auto;
-  }
-}
+/* (reduced motion rules consolidated above) */
 
 /* ============================================
    GLOBAL OVERFLOW PROTECTION
