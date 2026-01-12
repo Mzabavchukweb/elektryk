@@ -3463,6 +3463,18 @@ section#realizacje {
   }
 }
 
+/* Very Small Phones (iPhone SE, etc.) - Improved touch target and spacing */
+@media (max-width: 400px) {
+  .header-main-inner {
+    padding-right: var(--space-4);
+  }
+  
+  .menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
 /* Stats Section Enhanced */
 /* Testimonial Highlight */
 .testimonial-author-avatar img {
