@@ -1,6 +1,5 @@
 /* ============================================
-   ELEKTROMAX - Professional JavaScript
-   Figma-quality interactions
+   RS ELECTRICS - Site interactions
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initParticles();
   initCityPrefill();
+  initSmoothScroll();
+  initActivePageHighlight();
 });
 
 /* ============================================
@@ -21,18 +22,8 @@ function initHeader() {
   const header = document.querySelector('.header');
   if (!header) return;
 
-  let lastScroll = 0;
-
   window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
-      header.classList.add('header-scrolled');
-    } else {
-      header.classList.remove('header-scrolled');
-    }
-    
-    lastScroll = currentScroll;
+    header.classList.toggle('header-scrolled', window.pageYOffset > 50);
   }, { passive: true });
 }
 
@@ -43,10 +34,9 @@ function initHeader() {
 function initMobileNav() {
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.mobile-nav');
-  const close = document.querySelector('.mobile-nav-close');
-  const links = document.querySelectorAll('.mobile-nav-link');
-
   if (!toggle || !nav) return;
+
+  const close = document.querySelector('.mobile-nav-close');
 
   const openNav = () => {
     nav.classList.add('active');
@@ -62,13 +52,14 @@ function initMobileNav() {
 
   toggle.addEventListener('click', openNav);
   close?.addEventListener('click', closeNav);
-  links.forEach(link => link.addEventListener('click', closeNav));
+  
+  // Event delegation for nav links
+  nav.addEventListener('click', (e) => {
+    if (e.target.classList.contains('mobile-nav-link')) closeNav();
+  });
 
-  // Close on escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('active')) {
-      closeNav();
-    }
+    if (e.key === 'Escape' && nav.classList.contains('active')) closeNav();
   });
 }
 
@@ -77,70 +68,52 @@ function initMobileNav() {
    ============================================ */
 
 function initScrollAnimations() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-          
-          // Stagger children animation
-          if (entry.target.classList.contains('stagger-children')) {
-            const children = entry.target.children;
-            Array.from(children).forEach((child, i) => {
-              child.style.transitionDelay = `${i * 100}ms`;
-            });
-          }
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    }
-  );
+  const elements = document.querySelectorAll('.animate-on-scroll');
+  if (!elements.length) return;
 
-  document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-    observer.observe(el);
-  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        if (entry.target.classList.contains('stagger-children')) {
+          Array.from(entry.target.children).forEach((child, i) => {
+            child.style.transitionDelay = `${i * 100}ms`;
+          });
+        }
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  elements.forEach((el) => observer.observe(el));
 }
 
 /* ============================================
-   CABLE TIMELINE - Enhanced Sparking
+   CABLE TIMELINE
    ============================================ */
 
 function initCableTimeline() {
   const timeline = document.querySelector('.cable-timeline');
   if (!timeline) return;
 
+  const container = timeline.querySelector('.cable-container');
   const fill = timeline.querySelector('.cable-fill');
   const markers = timeline.querySelectorAll('.cable-marker');
   const progressText = timeline.querySelector('.cable-progress');
-  const spark = timeline.querySelector('.cable-spark');
-  const connectorSpark = timeline.querySelector('.connector-spark');
 
   let lastProgress = 0;
   let lastScrollY = 0;
   let ticking = false;
   let sparkCooldown = false;
+  let idleTimer;
 
-  // Create multiple spark elements for intense effect
-  const sparks = [];
-  for (let i = 0; i < 3; i++) {
-    const sparkEl = document.createElement('div');
-    sparkEl.className = 'cable-spark';
-    sparkEl.style.cssText = `
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-      opacity: 0;
-      z-index: 10;
-    `;
-    timeline.querySelector('.cable-container').appendChild(sparkEl);
-    sparks.push(sparkEl);
-  }
+  // Create spark elements
+  const sparks = Array.from({ length: 3 }, () => {
+    const el = document.createElement('div');
+    el.className = 'cable-spark';
+    el.style.cssText = 'position:absolute;width:40px;height:40px;left:50%;transform:translateX(-50%);pointer-events:none;opacity:0;z-index:10';
+    container?.appendChild(el);
+    return el;
+  });
 
   function updateTimeline() {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -148,17 +121,9 @@ function initCableTimeline() {
     const progress = scrollHeight > 0 ? Math.min(Math.max(scrollTop / scrollHeight, 0), 1) : 0;
     const progressPercent = Math.round(progress * 100);
 
-    // Update fill
-    if (fill) {
-      fill.style.height = `${progressPercent}%`;
-    }
+    if (fill) fill.style.height = `${progressPercent}%`;
+    if (progressText) progressText.textContent = `${progressPercent}%`;
 
-    // Update progress text
-    if (progressText) {
-      progressText.textContent = `${progressPercent}%`;
-    }
-
-    // Intense sparking on scroll
     const scrollDelta = Math.abs(scrollTop - lastScrollY);
     if (scrollDelta > 5 && !sparkCooldown) {
       triggerSpark(progressPercent);
@@ -168,138 +133,76 @@ function initCableTimeline() {
 
     lastScrollY = scrollTop;
     lastProgress = progress;
-
-    // Update markers
-    updateMarkers(markers);
-    
+    updateMarkers();
     ticking = false;
   }
 
   function triggerSpark(progress) {
-    // Get a random spark element
     const sparkEl = sparks[Math.floor(Math.random() * sparks.length)];
     if (!sparkEl) return;
 
-    // Position at fill level with slight randomness
-    const randomOffset = (Math.random() - 0.5) * 10;
-    sparkEl.style.top = `${Math.min(progress, 95) + randomOffset}%`;
-    
-    // Trigger animation
+    sparkEl.style.top = `${Math.min(progress, 95) + (Math.random() - 0.5) * 10}%`;
     sparkEl.classList.remove('active');
     sparkEl.offsetWidth; // Force reflow
     sparkEl.classList.add('active');
-
-    // Create spark burst effect
     createSparkBurst(sparkEl);
-
-    setTimeout(() => {
-      sparkEl.classList.remove('active');
-    }, 600);
+    setTimeout(() => sparkEl.classList.remove('active'), 600);
   }
 
   function createSparkBurst(parentEl) {
-    const rect = parentEl.getBoundingClientRect();
-    const container = timeline.querySelector('.cable-container');
-    
-    // Create mini particles
+    if (!container) return;
     for (let i = 0; i < 4; i++) {
       const particle = document.createElement('div');
       const angle = (i / 4) * Math.PI * 2;
       const distance = 20 + Math.random() * 15;
-      
-      particle.style.cssText = `
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: #fff;
-        border-radius: 50%;
-        top: ${parseFloat(parentEl.style.top)}%;
-        left: 50%;
-        transform: translateX(-50%);
-        pointer-events: none;
-        z-index: 15;
-        box-shadow: 0 0 6px #F59E0B, 0 0 12px #F59E0B;
-      `;
-      
+
+      particle.style.cssText = `position:absolute;width:4px;height:4px;background:#fff;border-radius:50%;top:${parseFloat(parentEl.style.top)}%;left:50%;transform:translateX(-50%);pointer-events:none;z-index:15;box-shadow:0 0 6px #F59E0B,0 0 12px #F59E0B`;
       container.appendChild(particle);
-      
-      // Animate particle
+
       particle.animate([
-        { 
-          opacity: 1,
-          transform: `translate(-50%, -50%) translate(0, 0) scale(1)`
-        },
-        { 
-          opacity: 0,
-          transform: `translate(-50%, -50%) translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`
-        }
-      ], {
-        duration: 400 + Math.random() * 200,
-        easing: 'cubic-bezier(0, 0, 0.2, 1)'
-      }).onfinish = () => particle.remove();
+        { opacity: 1, transform: 'translate(-50%,-50%) translate(0,0) scale(1)' },
+        { opacity: 0, transform: `translate(-50%,-50%) translate(${Math.cos(angle) * distance}px,${Math.sin(angle) * distance}px) scale(0)` }
+      ], { duration: 400 + Math.random() * 200, easing: 'cubic-bezier(0,0,0.2,1)' }).onfinish = () => particle.remove();
     }
   }
 
-  function updateMarkers(markers) {
+  function updateMarkers() {
     const viewportCenter = window.innerHeight * 0.4;
-
     markers.forEach((marker) => {
-      const targetId = marker.dataset.target;
-      const target = document.querySelector(targetId);
+      const target = document.querySelector(marker.dataset.target);
       if (!target) return;
-
       const rect = target.getBoundingClientRect();
-      
       marker.classList.remove('active', 'current');
-
-      if (rect.bottom < viewportCenter) {
-        marker.classList.add('active');
-      } else if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
-        marker.classList.add('current');
-      }
+      if (rect.bottom < viewportCenter) marker.classList.add('active');
+      else if (rect.top < viewportCenter && rect.bottom > viewportCenter) marker.classList.add('current');
     });
   }
 
-  // Scroll listener with RAF throttling
+  const triggerIdleSpark = () => {
+    if (lastProgress > 0.05 && lastProgress < 0.95) triggerSpark(Math.round(lastProgress * 100));
+    idleTimer = setTimeout(triggerIdleSpark, 2000 + Math.random() * 2000);
+  };
+
+  // Single scroll listener
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(updateTimeline);
       ticking = true;
     }
-  }, { passive: true });
-
-  // Marker click handlers
-  markers.forEach(marker => {
-    marker.addEventListener('click', () => {
-      const target = document.querySelector(marker.dataset.target);
-      if (!target) return;
-
-      const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
-      const targetPos = target.offsetTop - headerHeight - 20;
-
-      window.scrollTo({
-        top: targetPos,
-        behavior: 'smooth'
-      });
-    });
-  });
-
-  // Periodic spark animation when idle
-  let idleTimer;
-  const triggerIdleSpark = () => {
-    if (lastProgress > 0.05 && lastProgress < 0.95) {
-      const currentProgress = Math.round(lastProgress * 100);
-      triggerSpark(currentProgress);
-    }
-    idleTimer = setTimeout(triggerIdleSpark, 2000 + Math.random() * 2000);
-  };
-
-  window.addEventListener('scroll', () => {
     clearTimeout(idleTimer);
     idleTimer = setTimeout(triggerIdleSpark, 3000);
   }, { passive: true });
 
-  // Initial update
+  // Event delegation for marker clicks
+  timeline.addEventListener('click', (e) => {
+    const marker = e.target.closest('.cable-marker');
+    if (!marker) return;
+    const target = document.querySelector(marker.dataset.target);
+    if (!target) return;
+    const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+    window.scrollTo({ top: target.offsetTop - headerHeight - 20, behavior: 'smooth' });
+  });
+
   updateTimeline();
   idleTimer = setTimeout(triggerIdleSpark, 3000);
 }
@@ -309,57 +212,40 @@ function initCableTimeline() {
    ============================================ */
 
 function initForms() {
-  const forms = document.querySelectorAll('form');
-
-  forms.forEach(form => {
+  document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', handleSubmit);
-    
-    // Add input animations
-    const inputs = form.querySelectorAll('.form-input, .form-textarea');
-    inputs.forEach(input => {
-      input.addEventListener('focus', () => {
-        input.parentElement?.classList.add('focused');
-      });
-      input.addEventListener('blur', () => {
-        input.parentElement?.classList.remove('focused');
-        if (input.value) {
-          input.parentElement?.classList.add('filled');
-        } else {
-          input.parentElement?.classList.remove('filled');
-        }
-      });
-    });
 
-    // Phone formatting
-    const phoneInputs = form.querySelectorAll('input[type="tel"]');
-    phoneInputs.forEach(input => {
-      input.addEventListener('input', formatPhone);
+    // Event delegation for input focus/blur
+    form.addEventListener('focusin', (e) => {
+      if (e.target.matches('.form-input')) e.target.parentElement?.classList.add('focused');
+    });
+    form.addEventListener('focusout', (e) => {
+      if (e.target.matches('.form-input')) {
+        e.target.parentElement?.classList.remove('focused');
+        e.target.parentElement?.classList.toggle('filled', !!e.target.value);
+      }
+    });
+    form.addEventListener('input', (e) => {
+      if (e.target.type === 'tel') formatPhone(e);
     });
   });
 }
 
 function handleSubmit(e) {
   e.preventDefault();
-  
   const form = e.target;
   const btn = form.querySelector('button[type="submit"]');
-  if (!btn) return;
+  if (!btn || !validateForm(form)) return;
 
-  // Validate
-  if (!validateForm(form)) return;
-
-  // Show loading
   const originalContent = btn.innerHTML;
   btn.classList.add('btn-loading');
-  btn.innerHTML = `<span class="btn-text" style="opacity:0">Wysyłanie</span>`;
+  btn.innerHTML = '<span class="btn-text" style="opacity:0">Wysyłanie</span>';
   btn.disabled = true;
 
-  // Simulate submission
   setTimeout(() => {
     btn.classList.remove('btn-loading');
     btn.innerHTML = originalContent;
     btn.disabled = false;
-    
     showMessage(form, 'success', 'Dziękujemy! Skontaktujemy się wkrótce.');
     form.reset();
   }, 1500);
@@ -367,18 +253,15 @@ function handleSubmit(e) {
 
 function validateForm(form) {
   let valid = true;
-  const inputs = form.querySelectorAll('.form-input, .form-textarea');
-
-  inputs.forEach(input => {
+  form.querySelectorAll('.form-input').forEach(input => {
     clearError(input);
-    
     if (input.required && !input.value.trim()) {
       showError(input, 'To pole jest wymagane');
       valid = false;
-    } else if (input.type === 'email' && input.value && !isValidEmail(input.value)) {
+    } else if (input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
       showError(input, 'Podaj prawidłowy adres e-mail');
       valid = false;
-    } else if (input.type === 'tel' && input.value && !isValidPhone(input.value)) {
+    } else if (input.type === 'tel' && input.value && input.value.replace(/\D/g, '').length < 9) {
       showError(input, 'Podaj prawidłowy numer telefonu');
       valid = false;
     }
@@ -389,78 +272,37 @@ function validateForm(form) {
     showMessage(form, 'error', 'Musisz zaakceptować politykę prywatności');
     valid = false;
   }
-
   return valid;
 }
 
 function showError(input, message) {
   input.classList.add('form-input-error');
-  
   const error = document.createElement('span');
   error.className = 'form-error-message';
-  error.innerHTML = `
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="10"/>
-      <line x1="12" y1="8" x2="12" y2="12"/>
-      <line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    ${message}
-  `;
-  input.parentElement.appendChild(error);
+  error.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${message}`;
+  input.parentElement?.appendChild(error);
 }
 
 function clearError(input) {
   input.classList.remove('form-input-error');
-  const error = input.parentElement.querySelector('.form-error-message');
-  if (error) error.remove();
+  input.parentElement?.querySelector('.form-error-message')?.remove();
 }
 
 function showMessage(form, type, message) {
-  const existing = form.querySelector('.form-message');
-  if (existing) existing.remove();
-
+  form.querySelector('.form-message')?.remove();
   const msg = document.createElement('div');
   msg.className = `form-message form-message-${type}`;
-  msg.style.cssText = `
-    grid-column: 1 / -1;
-    padding: var(--space-4);
-    border-radius: var(--radius-md);
-    font-size: var(--text-sm);
-    font-weight: var(--font-medium);
-    text-align: center;
-    margin-bottom: var(--space-4);
-    background: ${type === 'success' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)'};
-    color: ${type === 'success' ? 'var(--success-500)' : 'var(--error-500)'};
-    border: 1px solid ${type === 'success' ? 'rgba(34, 197, 94, 0.2)' : 'rgba(239, 68, 68, 0.2)'};
-  `;
+  msg.style.cssText = `grid-column:1/-1;padding:var(--space-4);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:var(--font-medium);text-align:center;margin-bottom:var(--space-4);background:${type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'};color:${type === 'success' ? 'var(--success-500)' : 'var(--error-500)'};border:1px solid ${type === 'success' ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}`;
   msg.textContent = message;
-
   form.insertBefore(msg, form.firstChild);
-
-  if (type === 'success') {
-    setTimeout(() => msg.remove(), 5000);
-  }
+  if (type === 'success') setTimeout(() => msg.remove(), 5000);
 }
 
 function formatPhone(e) {
-  let value = e.target.value.replace(/\D/g, '');
-  if (value.length > 9) value = value.slice(0, 9);
-  
-  if (value.length > 6) {
-    value = `${value.slice(0, 3)} ${value.slice(3, 6)} ${value.slice(6)}`;
-  } else if (value.length > 3) {
-    value = `${value.slice(0, 3)} ${value.slice(3)}`;
-  }
-  
+  let value = e.target.value.replace(/\D/g, '').slice(0, 9);
+  if (value.length > 6) value = `${value.slice(0, 3)} ${value.slice(3, 6)} ${value.slice(6)}`;
+  else if (value.length > 3) value = `${value.slice(0, 3)} ${value.slice(3)}`;
   e.target.value = value;
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPhone(phone) {
-  return phone.replace(/\D/g, '').length >= 9;
 }
 
 /* ============================================
@@ -469,88 +311,56 @@ function isValidPhone(phone) {
 
 function initParticles() {
   const container = document.querySelector('.particles-container');
-  if (!container) return;
-
-  // Respect reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   for (let i = 0; i < 12; i++) {
-    createParticle(container, i);
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    const size = 1 + Math.random() * 2;
+    particle.style.cssText = `width:${size}px;height:${size}px;left:${Math.random() * 100}%;animation-delay:${Math.random() * 10}s;animation-duration:${8 + Math.random() * 6}s`;
+    container.appendChild(particle);
   }
-}
-
-function createParticle(container, index) {
-  const particle = document.createElement('div');
-  particle.className = 'particle';
-  
-  const size = 1 + Math.random() * 2;
-  const posX = Math.random() * 100;
-  const delay = Math.random() * 10;
-  const duration = 8 + Math.random() * 6;
-
-  particle.style.cssText = `
-    width: ${size}px;
-    height: ${size}px;
-    left: ${posX}%;
-    animation-delay: ${delay}s;
-    animation-duration: ${duration}s;
-  `;
-
-  container.appendChild(particle);
 }
 
 /* ============================================
    SMOOTH SCROLL
    ============================================ */
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
+function initSmoothScroll() {
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
     if (href === '#') return;
-    
     const target = document.querySelector(href);
     if (!target) return;
-
     e.preventDefault();
-    
-    const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
-    const targetPos = target.offsetTop - headerHeight - 20;
-
-    window.scrollTo({
-      top: targetPos,
-      behavior: 'smooth'
-    });
+    const scrollPaddingTop = parseInt(getComputedStyle(document.documentElement).scrollPaddingTop) || 180;
+    window.scrollTo({ top: Math.max(0, target.offsetTop - scrollPaddingTop), behavior: 'smooth' });
   });
-});
+}
 
 /* ============================================
    ACTIVE PAGE HIGHLIGHT
    ============================================ */
 
-(() => {
+function initActivePageHighlight() {
   const currentPath = window.location.pathname;
-  const links = document.querySelectorAll('.nav-link, .mobile-nav-link');
-  
-  links.forEach(link => {
+  document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
     const href = link.getAttribute('href');
-    if (
-      currentPath.endsWith(href) || 
-      (currentPath === '/' && href === 'index.html') ||
-      (currentPath.endsWith('/') && href === 'index.html')
-    ) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
+    const isActive = currentPath.endsWith(href) || (currentPath === '/' && href === 'index.html') || (currentPath.endsWith('/') && href === 'index.html');
+    link.classList.toggle('active', isActive);
   });
-})();
+}
 
 /* ============================================
    CITY PREFILL FROM URL PARAMETER
    ============================================ */
 
 function initCityPrefill() {
-  // Mapping slug -> full city name
+  const miastoSlug = new URLSearchParams(window.location.search).get('miasto');
+  if (!miastoSlug) return;
+
   const cityMap = {
     'gorzow-wielkopolski': 'Gorzów Wielkopolski',
     'kostrzyn-nad-odra': 'Kostrzyn nad Odrą',
@@ -566,35 +376,16 @@ function initCityPrefill() {
     'rzepin': 'Rzepin'
   };
 
-  // Get ?miasto= parameter from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const miastoSlug = urlParams.get('miasto');
-
-  if (!miastoSlug) return;
-
   const cityName = cityMap[miastoSlug];
   if (!cityName) return;
 
-  // Find subject input field and prefill it
-  const subjectInput = document.querySelector('input[name="subject"]');
-  if (subjectInput) {
-    const currentValue = subjectInput.value.trim();
-    const prefix = `Miasto: ${cityName}`;
-    
-    // Only add prefix if not already present
-    if (!currentValue.startsWith('Miasto:')) {
-      subjectInput.value = currentValue ? `${prefix}\n${currentValue}` : prefix;
-    }
-  }
-
-  // Also try textarea if exists
-  const messageTextarea = document.querySelector('textarea[name="message"], textarea[name="wiadomosc"]');
-  if (messageTextarea) {
-    const currentValue = messageTextarea.value.trim();
-    const prefix = `Miasto: ${cityName}`;
-    
-    if (!currentValue.startsWith('Miasto:')) {
-      messageTextarea.value = currentValue ? `${prefix}\n${currentValue}` : prefix;
-    }
-  }
+  const prefix = `Miasto: ${cityName}`;
+  
+  [document.querySelector('input[name="subject"]'), document.querySelector('textarea[name="message"], textarea[name="wiadomosc"]')]
+    .filter(Boolean)
+    .forEach(field => {
+      if (!field.value.startsWith('Miasto:')) {
+        field.value = field.value.trim() ? `${prefix}\n${field.value.trim()}` : prefix;
+      }
+    });
 }
