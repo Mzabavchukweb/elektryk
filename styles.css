@@ -923,6 +923,16 @@ ul, ol {
   text-align: center;
 }
 
+.mobile-nav-contact a svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.mobile-nav-contact a span {
+  flex: 1;
+}
+
 .mobile-nav-contact a[href^="tel"] {
   color: var(--primary-500);
   background: var(--surface-800);
