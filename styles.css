@@ -923,7 +923,7 @@ ul, ol {
   align-items: flex-start;
   justify-content: center;
   padding-top: var(--header-height);
-  padding-bottom: var(--space-16);
+  padding-bottom: var(--space-8);
   overflow: hidden;
 }
 
@@ -2313,8 +2313,9 @@ ul, ol {
   gap: var(--space-6);
 }
 
-/* Remove bottom padding from portfolio section before footer */
+/* Portfolio section - reduced padding */
 section#realizacje {
+  padding-top: var(--space-8) !important;
   padding-bottom: 0 !important;
 }
 
