@@ -3666,10 +3666,40 @@ section#realizacje {
   .hero-feature {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--surface-500);
   }
   
   .hero-feature-icon {
     margin: 0 auto;
+    width: 56px;
+    height: 56px;
+    background: var(--surface-700);
+    border-color: var(--primary-500);
+  }
+  
+  .hero-feature-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .hero-feature-content {
+    font-size: var(--text-base);
+    margin-top: var(--space-3);
+  }
+  
+  .hero-feature-content strong {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    display: block;
+  }
+  
+  .hero-features {
+    gap: var(--space-5);
+    max-width: 100%;
   }
 }
 
@@ -3738,6 +3768,28 @@ section#realizacje {
   
   .testimonial-rating {
     margin-left: 0;
+  }
+  
+  .hero-feature {
+    padding: var(--space-6) var(--space-5);
+  }
+  
+  .hero-feature-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .hero-feature-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .hero-feature-content strong {
+    font-size: var(--text-2xl);
+  }
+  
+  .hero-features {
+    gap: var(--space-6);
   }
 }
 
