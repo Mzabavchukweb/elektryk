@@ -1917,6 +1917,14 @@ a.hero-feature:hover {
   gap: var(--space-6);
 }
 
+.services-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.service-icon-highlight {
+  background: linear-gradient(135deg, rgba(255, 196, 0, 0.2) 0%, rgba(255, 196, 0, 0.1) 100%);
+}
+
 .service-card {
   background: var(--surface-800);
   border: 1px solid var(--surface-600);
@@ -2235,6 +2243,14 @@ a.hero-feature:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-16);
   align-items: center;
+}
+
+.why-grid-reversed {
+  direction: rtl;
+}
+
+.why-grid-reversed > * {
+  direction: ltr;
 }
 
 .why-content {
@@ -4336,5 +4352,91 @@ section#realizacje {
 .section-header-narrow { max-width: 900px; margin: 0 auto; }
 .max-w-800 { max-width: 800px; }
 .highlight-link { color: var(--primary-500); font-size: var(--text-sm); text-decoration: underline; }
+
+/* Wycena section cards */
+.wycena-content {
+  max-width: 900px;
+  margin: var(--space-10) auto 0;
+}
+
+.wycena-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+}
+
+.wycena-card {
+  background: var(--surface-700);
+  border: 1px solid var(--surface-500);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.wycena-card:hover {
+  border-color: var(--primary-500);
+  transform: translateY(-2px);
+}
+
+.wycena-card-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.wycena-card-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.link-primary {
+  color: var(--primary-500);
+  text-decoration: underline;
+  font-weight: var(--font-semibold);
+  transition: color 0.2s ease;
+}
+
+.link-primary:hover {
+  color: var(--primary-400);
+}
+
+/* FAQ section */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: var(--space-6);
+}
+
+.faq-card {
+  background: var(--surface-700);
+  border: 1px solid var(--surface-500);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: left;
+  transition: border-color 0.2s ease;
+}
+
+.faq-card:hover {
+  border-color: var(--primary-500);
+}
+
+.faq-question {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-snug);
+}
+
+.faq-answer {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
 .highlight-text { color: var(--primary-500); font-weight: 600; }
 .icon-circle { width: 48px; height: 48px; background: var(--primary-500); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; }
