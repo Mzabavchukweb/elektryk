@@ -1171,6 +1171,7 @@ a.hero-feature:hover {
   align-items: center;
   gap: var(--space-6);
   padding-top: var(--space-8);
+  margin-bottom: var(--space-8);
   border-top: 1px solid var(--surface-600);
 }
 
@@ -2444,6 +2445,32 @@ section#realizacje {
 /* ============================================
    17. CTA SECTION
    ============================================ */
+
+.cta-section {
+  position: relative;
+  padding: var(--space-20) 0;
+  background: linear-gradient(135deg, var(--surface-800) 0%, var(--surface-900) 100%);
+  overflow: hidden;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--space-12) var(--space-8);
+  background: rgba(17, 17, 19, 0.6);
+  border: 1px solid var(--surface-600);
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(10px);
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
 
 .cta-section::before {
   content: '';
