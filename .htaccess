@@ -1,0 +1,44 @@
+# =============================================
+# RS ELECTRICS - Konfiguracja domeny
+# Canonical: https://elektrykgorzow.com (bez www)
+# =============================================
+
+# Włącz RewriteEngine
+RewriteEngine On
+
+# 1. Wymuś HTTPS (http -> https)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Usuń www (www -> non-www)
+RewriteCond %{HTTP_HOST} ^www\.elektrykgorzow\.com$ [NC]
+RewriteRule ^(.*)$ https://elektrykgorzow.com/$1 [L,R=301]
+
+# =============================================
+# Optymalizacja wydajności
+# =============================================
+
+# Kompresja GZIP
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# Cache przeglądarki
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Nagłówki bezpieczeństwa
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
