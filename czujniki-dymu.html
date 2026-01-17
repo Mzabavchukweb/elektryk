@@ -58,17 +58,31 @@
       "latitude": 52.7325,
       "longitude": 15.2369
     },
+    "hasMap": "https://share.google/p9uoswHRN3Q4X8bmo",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    ],
     "priceRange": "PLN",
+    "logo": "https://elektrykgorzow.com/elektryk.png",
+    "image": "https://elektrykgorzow.com/elektryk.png",
     "areaServed": [
       { "@type": "City", "name": "Gorzów Wielkopolski" },
       { "@type": "City", "name": "Kostrzyn nad Odrą" },
       { "@type": "City", "name": "Strzelce Krajeńskie" },
       { "@type": "City", "name": "Międzyrzecz" },
-      { "@type": "City", "name": "Sulęcin" }
-    ],
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "18:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "14:00" }
+      { "@type": "City", "name": "Sulęcin" },
+      { "@type": "City", "name": "Skwierzyna" },
+      { "@type": "City", "name": "Dębno" },
+      { "@type": "City", "name": "Myślibórz" },
+      { "@type": "City", "name": "Drezdenko" },
+      { "@type": "City", "name": "Witnica" },
+      { "@type": "City", "name": "Słubice" },
+      { "@type": "City", "name": "Rzepin" }
     ]
   }
   </script>
@@ -493,9 +507,9 @@
   <div class="section-separator"></div>
 
   <!-- WHY SECTION 2 - DLA FIRM -->
-  <section class="section why-section why-section-reverse" id="firma" data-section>
+  <section class="section why-section" id="firma" data-section>
     <div class="container">
-      <div class="why-grid why-grid-reverse">
+      <div class="why-grid why-grid-reversed">
         <div class="why-content animate-on-scroll">
           <span class="overline">Dla firm i obiektów komercyjnych</span>
           <h2 class="heading-1">Czujniki dymu w <span class="text-highlight">firmach i biurach</span></h2>
@@ -531,53 +545,59 @@
   <div class="section-separator"></div>
 
   <!-- JAK PRACUJEMY -->
-  <section class="section" id="jak-pracujemy" data-section>
+  <section class="section process-workflow-section" id="jak-pracujemy" data-section>
     <div class="container">
-      <div class="services-header animate-on-scroll section-header-centered">
-        <span class="overline">Proces realizacji</span>
-        <h2 class="heading-1">Jak <span class="text-highlight">pracujemy</span></h2>
-        <p class="body-lg text-secondary mt-4">Montaż czujników dymu w Gorzowie Wielkopolskim — od kontaktu do pełnej ochrony</p>
+      <div class="process-workflow-header animate-on-scroll">
+        <h2 class="heading-1">Jak realizujemy <span class="text-highlight">zlecenia</span></h2>
+        <p class="body-lg text-secondary mt-4 mx-auto" style="max-width: 600px;">
+          5 kroków od kontaktu do pełnej ochrony przeciwpożarowej
+        </p>
       </div>
       
-      <div class="process-timeline stagger-children animate-on-scroll mt-12">
-        <div class="process-step">
-          <div class="process-step-number">1</div>
-          <div class="process-step-content">
-            <h3 class="process-step-title">Kontakt i konsultacja</h3>
-            <p class="process-step-description">Zadzwoń lub wyślij formularz. Omawiamy Twoje potrzeby — liczbę pomieszczeń, typ budynku, integrację z alarmem. Bezpłatna wstępna wycena telefoniczna.</p>
+      <div class="process-workflow-grid stagger-children animate-on-scroll">
+        <div class="process-workflow-card">
+          <div class="process-workflow-number">01</div>
+          <div class="process-workflow-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           </div>
+          <h3 class="process-workflow-title">Kontakt</h3>
+          <p class="process-workflow-description">Zadzwoń lub napisz. Omawiamy potrzeby — liczbę pomieszczeń, typ budynku, integrację z alarmem.</p>
         </div>
         
-        <div class="process-step">
-          <div class="process-step-number">2</div>
-          <div class="process-step-content">
-            <h3 class="process-step-title">Wizyta i pomiary</h3>
-            <p class="process-step-description">Przyjeżdżamy na miejsce (dojazd do 70 km od Gorzowa). Oceniamy pomieszczenia, planujemy rozmieszczenie czujników, dobieramy odpowiedni typ detektorów.</p>
+        <div class="process-workflow-card">
+          <div class="process-workflow-number">02</div>
+          <div class="process-workflow-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
+          <h3 class="process-workflow-title">Wizyta i pomiary</h3>
+          <p class="process-workflow-description">Przyjeżdżamy na miejsce (do 70 km od Gorzowa). Planujemy rozmieszczenie czujników.</p>
         </div>
         
-        <div class="process-step">
-          <div class="process-step-number">3</div>
-          <div class="process-step-content">
-            <h3 class="process-step-title">Oferta i akceptacja</h3>
-            <p class="process-step-description">Przygotowujemy szczegółową wycenę z opisem urządzeń i zakresu prac. Ustalamy termin montażu. Oferujemy elastyczne płatności i możliwość faktury VAT.</p>
+        <div class="process-workflow-card">
+          <div class="process-workflow-number">03</div>
+          <div class="process-workflow-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
           </div>
+          <h3 class="process-workflow-title">Wycena</h3>
+          <p class="process-workflow-description">Szczegółowa oferta z opisem urządzeń i zakresu prac. Ustalamy termin montażu.</p>
         </div>
         
-        <div class="process-step">
-          <div class="process-step-number">4</div>
-          <div class="process-step-content">
-            <h3 class="process-step-title">Montaż i konfiguracja</h3>
-            <p class="process-step-description">Instalujemy czujniki dymu, podłączamy do centrali alarmowej lub Smart Home. Konfigurujemy powiadomienia na telefon. Szkolimy z obsługi systemu.</p>
+        <div class="process-workflow-card">
+          <div class="process-workflow-number">04</div>
+          <div class="process-workflow-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
+          <h3 class="process-workflow-title">Montaż</h3>
+          <p class="process-workflow-description">Instalujemy czujniki, podłączamy do alarmu lub Smart Home. Konfigurujemy powiadomienia.</p>
         </div>
         
-        <div class="process-step">
-          <div class="process-step-number">5</div>
-          <div class="process-step-content">
-            <h3 class="process-step-title">Odbiór i gwarancja</h3>
-            <p class="process-step-description">Testujemy wszystkie czujniki, przekazujemy dokumentację i instrukcje. 24-miesięczna gwarancja na montaż. Serwis i wsparcie techniczne.</p>
+        <div class="process-workflow-card">
+          <div class="process-workflow-number">05</div>
+          <div class="process-workflow-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
+          <h3 class="process-workflow-title">Odbiór i gwarancja</h3>
+          <p class="process-workflow-description">Testujemy czujniki, przekazujemy dokumentację. 24-miesięczna gwarancja na montaż.</p>
         </div>
       </div>
     </div>
@@ -615,59 +635,35 @@
         <p class="body-lg text-secondary mt-4">Ceny zależą od typu czujnika, liczby urządzeń i zakresu integracji. Bezpłatna wycena dla Gorzowa i okolic.</p>
       </div>
       
-      <div class="pricing-grid stagger-children animate-on-scroll mt-8">
-        <div class="pricing-card">
-          <div class="pricing-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <h3 class="pricing-title">Czujnik optyczny</h3>
-          <div class="pricing-price">od 80 zł</div>
-          <p class="pricing-description">Podstawowy czujnik dymu do domu. Montaż + urządzenie. Dla mieszkań i domów jednorodzinnych.</p>
+      <div class="wycena-grid stagger-children animate-on-scroll mt-8">
+        <div class="wycena-card">
+          <h3 class="wycena-card-title">Czujnik optyczny</h3>
+          <p class="wycena-card-desc">od 80 zł — podstawowy czujnik dymu do domu. Montaż + urządzenie. Dla mieszkań i domów jednorodzinnych.</p>
         </div>
         
-        <div class="pricing-card">
-          <div class="pricing-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          </div>
-          <h3 class="pricing-title">Czujnik bezprzewodowy</h3>
-          <div class="pricing-price">od 150 zł</div>
-          <p class="pricing-description">Bez kucia ścian. Powiadomienia na telefon. Integracja z <a href="smart-home.html" class="link-primary">Smart Home</a>.</p>
+        <div class="wycena-card">
+          <h3 class="wycena-card-title">Czujnik bezprzewodowy</h3>
+          <p class="wycena-card-desc">od 150 zł — bez kucia ścian. Powiadomienia na telefon. Integracja z <a href="smart-home.html" class="link-primary">Smart Home</a>.</p>
         </div>
         
-        <div class="pricing-card">
-          <div class="pricing-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-          </div>
-          <h3 class="pricing-title">Czujnik wielofunkcyjny</h3>
-          <div class="pricing-price">od 200 zł</div>
-          <p class="pricing-description">Dym + ciepło + czad. Kompleksowa ochrona w jednym urządzeniu. Najwyższy poziom bezpieczeństwa.</p>
+        <div class="wycena-card">
+          <h3 class="wycena-card-title">Czujnik wielofunkcyjny</h3>
+          <p class="wycena-card-desc">od 200 zł — dym + ciepło + czad. Kompleksowa ochrona w jednym urządzeniu.</p>
         </div>
         
-        <div class="pricing-card">
-          <div class="pricing-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          </div>
-          <h3 class="pricing-title">Pakiet dom (5 czujników)</h3>
-          <div class="pricing-price">od 350 zł</div>
-          <p class="pricing-description">Kompletna ochrona domu jednorodzinnego. Sypialnie, korytarz, klatka schodowa. Rabat pakietowy.</p>
+        <div class="wycena-card">
+          <h3 class="wycena-card-title">Pakiet dom (5 czujników)</h3>
+          <p class="wycena-card-desc">od 350 zł — kompletna ochrona domu. Sypialnie, korytarz, klatka schodowa. Rabat pakietowy.</p>
         </div>
         
-        <div class="pricing-card">
-          <div class="pricing-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 class="pricing-title">Integracja z alarmem</h3>
-          <div class="pricing-price">od 100 zł</div>
-          <p class="pricing-description">Podłączenie czujników do istniejącej centrali alarmowej. Automatyczne powiadomienia.</p>
+        <div class="wycena-card">
+          <h3 class="wycena-card-title">Integracja z alarmem</h3>
+          <p class="wycena-card-desc">od 100 zł — podłączenie czujników do istniejącej centrali alarmowej. Automatyczne powiadomienia.</p>
         </div>
         
-        <div class="pricing-card">
-          <div class="pricing-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          </div>
-          <h3 class="pricing-title">System PPOŻ firma</h3>
-          <div class="pricing-price">wycena indywidualna</div>
-          <p class="pricing-description">Kompleksowy <a href="systemy-ppoz.html" class="link-primary">system PPOŻ</a> dla firm. Projekt, montaż, dokumentacja, odbiór.</p>
+        <div class="wycena-card">
+          <h3 class="wycena-card-title">System PPOŻ firma</h3>
+          <p class="wycena-card-desc">Wycena indywidualna — kompleksowy <a href="systemy-ppoz.html" class="link-primary">system PPOŻ</a> dla firm. Projekt, montaż, dokumentacja.</p>
         </div>
       </div>
       
@@ -690,44 +686,26 @@
       
       <div class="portfolio-grid stagger-children animate-on-scroll mt-8">
         <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="czujniki-dymu/czujniki-dymu-hero.webp" alt="Montaż czujników dymu w domu jednorodzinnym Gorzów Wielkopolski" width="400" height="300" loading="lazy" decoding="async">
-          </div>
-          <div class="portfolio-content">
-            <h3 class="portfolio-title">Dom jednorodzinny — Gorzów, os. Europejskie</h3>
-            <p class="portfolio-description">Instalacja 6 czujników optycznych w domu 180 m². Sypialnie, korytarze, klatka schodowa. Integracja z systemem alarmowym Satel.</p>
-            <div class="portfolio-tags">
-              <span class="portfolio-tag">Czujniki optyczne</span>
-              <span class="portfolio-tag">Integracja z alarmem</span>
-            </div>
+          <img src="czujniki-dymu/czujniki-dymu-hero.webp" alt="Montaż czujników dymu w domu jednorodzinnym Gorzów Wielkopolski" width="400" height="300" loading="lazy" decoding="async">
+          <div class="portfolio-card-overlay">
+            <h3 class="portfolio-card-title">Dom jednorodzinny — Gorzów, os. Europejskie</h3>
+            <span class="portfolio-card-category">6 czujników optycznych + alarm</span>
           </div>
         </div>
         
         <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="czujniki-dymu/czujniki-dymu-montaz.webp" alt="System detekcji dymu w biurze Gorzów Wielkopolski" width="400" height="300" loading="lazy" decoding="async">
-          </div>
-          <div class="portfolio-content">
-            <h3 class="portfolio-title">Biuro open space — Gorzów, centrum</h3>
-            <p class="portfolio-description">Montaż 12 czujników dymu w biurze 400 m². System zgodny z wymogami PPOŻ. Dokumentacja do ubezpieczyciela, protokół odbioru.</p>
-            <div class="portfolio-tags">
-              <span class="portfolio-tag">System PPOŻ</span>
-              <span class="portfolio-tag">Dokumentacja</span>
-            </div>
+          <img src="czujniki-dymu/czujniki-dymu-montaz.webp" alt="System detekcji dymu w biurze Gorzów Wielkopolski" width="400" height="300" loading="lazy" decoding="async">
+          <div class="portfolio-card-overlay">
+            <h3 class="portfolio-card-title">Biuro open space — Gorzów, centrum</h3>
+            <span class="portfolio-card-category">12 czujników + dokumentacja PPOŻ</span>
           </div>
         </div>
         
         <div class="portfolio-card">
-          <div class="portfolio-image">
-            <img src="czujniki-dymu/czujniki-dymu-czujnik.webp" alt="Czujniki dymu bezprzewodowe Smart Home Gorzów" width="400" height="300" loading="lazy" decoding="async">
-          </div>
-          <div class="portfolio-content">
-            <h3 class="portfolio-title">Mieszkanie z Smart Home — Kostrzyn nad Odrą</h3>
-            <p class="portfolio-description">4 bezprzewodowe czujniki dymu zintegrowane z Tuya Smart. Powiadomienia na telefon, automatyczne scenariusze bezpieczeństwa.</p>
-            <div class="portfolio-tags">
-              <span class="portfolio-tag">Bezprzewodowe</span>
-              <span class="portfolio-tag">Smart Home</span>
-            </div>
+          <img src="czujniki-dymu/czujniki-dymu-czujnik.webp" alt="Czujniki dymu bezprzewodowe Smart Home Gorzów" width="400" height="300" loading="lazy" decoding="async">
+          <div class="portfolio-card-overlay">
+            <h3 class="portfolio-card-title">Mieszkanie z Smart Home — Kostrzyn nad Odrą</h3>
+            <span class="portfolio-card-category">4 czujniki bezprzewodowe Tuya</span>
           </div>
         </div>
       </div>
@@ -878,8 +856,13 @@
             </div>
             <div class="footer-cert">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <span>Gwarancja 24 miesiące</span>
+              <span>Gwarancja jakości</span>
             </div>
+          </div>
+          <div class="footer-social">
+            <a href="https://share.google/p9uoswHRN3Q4X8bmo" target="_blank" rel="noopener noreferrer" aria-label="Google Reviews" class="footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </a>
           </div>
         </div>
         
@@ -938,13 +921,25 @@
             </div>
             <div class="footer-contact-item">
               <div class="footer-contact-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="footer-contact-label">Godziny pracy</div>
+                <div class="footer-contact-value">Pn-Pt: 8:00-18:00</div>
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <div class="footer-contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
               </div>
               <div>
                 <div class="footer-contact-label">NIP</div>
                 <div class="footer-contact-value">5992039283</div>
               </div>
             </div>
+          </div>
+          <div class="mt-6">
+            <a href="https://share.google/p9uoswHRN3Q4X8bmo" target="_blank" rel="noopener noreferrer" style="color: var(--primary-500); font-size: var(--text-sm); text-decoration: underline;">Zobacz opinie Google</a>
           </div>
         </div>
       </div>
@@ -979,7 +974,7 @@
       <div class="cable-markers">
         <div class="cable-marker" data-target="#hero"><span class="cable-marker-tooltip">Start</span><div class="cable-marker-dot"></div></div>
         <div class="cable-marker" data-target="#zakres"><span class="cable-marker-tooltip">Zakres</span><div class="cable-marker-dot"></div></div>
-        <div class="cable-marker" data-target="#jak-pracujemy"><span class="cable-marker-tooltip">Proces</span><div class="cable-marker-dot"></div></div>
+        <div class="cable-marker" data-target="#jak-pracujemy"><span class="cable-marker-tooltip">Jak pracujemy</span><div class="cable-marker-dot"></div></div>
         <div class="cable-marker" data-target="#faq"><span class="cable-marker-tooltip">FAQ</span><div class="cable-marker-dot"></div></div>
       </div>
     </div>
