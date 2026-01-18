@@ -212,25 +212,9 @@ function initCableTimeline() {
    ============================================ */
 
 function initForms() {
+  // Formularze są tylko wizualne - bez funkcjonalności wysyłki
   document.querySelectorAll('form').forEach(form => {
-    const formAction = form.getAttribute('action') || '';
-    
-    // WAŻNE: Dla formularzy z send-mail.php - CAŁKOWICIE POMIŃ JavaScript
-    // Pozwól im działać w 100% natywnie (bez żadnych event listenerów submit)
-    if (formAction.includes('send-mail.php')) {
-      // Tylko formatowanie telefonu (nie blokuje wysyłki) - to jest OK
-      form.addEventListener('input', (e) => {
-        if (e.target.type === 'tel') formatPhone(e);
-      });
-      // NIE dodawaj żadnych innych event listenerów - formularz działa natywnie
-      // NIE dodawaj handleSubmit - pozwól przeglądarce obsłużyć submit
-      return; // Pomiń resztę kodu dla tego formularza
-    }
-
-    // Dla innych formularzy (jeśli są) - dodaj event listenery
-    form.addEventListener('submit', handleSubmit);
-
-    // Event delegation for input focus/blur
+    // Tylko formatowanie telefonu i style (focus/blur) - bez logiki wysyłki
     form.addEventListener('focusin', (e) => {
       if (e.target.matches('.form-input')) e.target.parentElement?.classList.add('focused');
     });
@@ -243,80 +227,13 @@ function initForms() {
     form.addEventListener('input', (e) => {
       if (e.target.type === 'tel') formatPhone(e);
     });
+    
+    // Blokuj domyślne wysłanie formularza (formularze są tylko wizualne)
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      return false;
+    });
   });
-}
-
-function handleSubmit(e) {
-  // Ta funkcja jest używana tylko dla formularzy BEZ send-mail.php
-  // Formularze z send-mail.php działają natywnie (bez JavaScript)
-  const form = e.target;
-  const btn = form.querySelector('button[type="submit"]');
-  
-  if (!btn || !validateForm(form)) {
-    e.preventDefault();
-    return false;
-  }
-
-  e.preventDefault();
-  const originalContent = btn.innerHTML;
-  btn.classList.add('btn-loading');
-  btn.innerHTML = '<span class="btn-text" style="opacity:0">Wysyłanie</span>';
-  btn.disabled = true;
-
-  setTimeout(() => {
-    btn.classList.remove('btn-loading');
-    btn.innerHTML = originalContent;
-    btn.disabled = false;
-    showMessage(form, 'success', 'Dziękujemy! Skontaktujemy się wkrótce.');
-    form.reset();
-  }, 1500);
-}
-
-function validateForm(form) {
-  let valid = true;
-  form.querySelectorAll('.form-input').forEach(input => {
-    clearError(input);
-    if (input.required && !input.value.trim()) {
-      showError(input, 'To pole jest wymagane');
-      valid = false;
-    } else if (input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-      showError(input, 'Podaj prawidłowy adres e-mail');
-      valid = false;
-    } else if (input.type === 'tel' && input.value && input.value.replace(/\D/g, '').length < 9) {
-      showError(input, 'Podaj prawidłowy numer telefonu');
-      valid = false;
-    }
-  });
-
-  const checkbox = form.querySelector('input[name="privacy"]');
-  if (checkbox && !checkbox.checked) {
-    showMessage(form, 'error', 'Musisz zaakceptować politykę prywatności');
-    valid = false;
-  }
-  return valid;
-}
-
-function showError(input, message) {
-  input.classList.add('form-input-error');
-  const error = document.createElement('span');
-  error.className = 'form-error-message';
-  error.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${message}`;
-  input.parentElement?.appendChild(error);
-}
-
-function clearError(input) {
-  input.classList.remove('form-input-error');
-  input.parentElement?.querySelector('.form-error-message')?.remove();
-}
-
-function showMessage(form, type, message) {
-  form.querySelector('.form-message')?.remove();
-  const msg = document.createElement('div');
-  msg.className = `form-message form-message-${type}`;
-  msg.style.cssText = `grid-column:1/-1;padding:var(--space-4);border-radius:var(--radius-md);font-size:var(--text-sm);font-weight:var(--font-medium);text-align:center;margin-bottom:var(--space-4);background:${type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'};color:${type === 'success' ? 'var(--success-500)' : 'var(--error-500)'};border:1px solid ${type === 'success' ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}`;
-  msg.textContent = message;
-  form.insertBefore(msg, form.firstChild);
-  if (type === 'success') setTimeout(() => msg.remove(), 5000);
 }
 
 function formatPhone(e) {

@@ -32,7 +32,7 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
     
     # Content-Security-Policy - Protect against XSS and injection attacks
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://www.google-analytics.com https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://www.google-analytics.com; base-uri 'self'; form-action 'self'"
     
     # Strict-Transport-Security (HSTS) - Force HTTPS
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
