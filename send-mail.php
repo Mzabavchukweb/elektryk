@@ -4,6 +4,9 @@
  * Obsługa formularzy kontaktowych
  */
 
+// Włącz output buffering (ważne dla header redirects)
+ob_start();
+
 // Włącz logowanie błędów
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
@@ -32,6 +35,7 @@ logError("=== REQUEST ===", [
 // Zabezpieczenie przed bezpośrednim dostępem
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     logError("Nieprawidłowa metoda HTTP", ['method' => $_SERVER['REQUEST_METHOD']]);
+    ob_end_clean();
     header('Location: /');
     exit;
 }
@@ -69,6 +73,7 @@ if (isset($rate_data[$client_ip])) {
     $recent_count = count($rate_data[$client_ip]);
     if ($recent_count >= $rate_limit_max) {
         logError("Rate limit exceeded", ['ip' => $client_ip, 'count' => $recent_count]);
+        ob_end_clean();
         header('Location: ' . $error_url . '&reason=rate_limit');
         exit;
     }
@@ -82,6 +87,7 @@ file_put_contents($rate_limit_file, json_encode($rate_data));
 // Honeypot spam protection
 if (isset($_POST['_honey']) && $_POST['_honey'] !== '') {
     logError("Honeypot triggered - bot detected", ['ip' => $client_ip]);
+    ob_end_clean();
     header('Location: ' . $redirect_url); // Nie pokazuj błędu botom
     exit;
 }
@@ -101,6 +107,7 @@ if (empty($name) || empty($phone) || empty($email)) {
         'phone' => !empty($phone),
         'email' => !empty($email)
     ]);
+    ob_end_clean();
     header('Location: ' . $error_url . '&reason=validation');
     exit;
 }
@@ -108,6 +115,7 @@ if (empty($name) || empty($phone) || empty($email)) {
 // Walidacja emaila
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     logError("Validation failed - invalid email", ['email' => $email]);
+    ob_end_clean();
     header('Location: ' . $error_url . '&reason=email');
     exit;
 }
@@ -136,40 +144,67 @@ $email_body .= "User-Agent: " . ($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown') . "\n
 
 // Nagłówki maila
 $from_email = 'noreply@elektrykgorzow.com';
-$headers = "From: RS ELECTRICS <" . $from_email . ">\r\n";
-$headers .= "Reply-To: " . $email . "\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "X-Priority: 3\r\n";
-$headers .= "X-MSMail-Priority: Normal\r\n";
+$headers = [];
+$headers[] = "From: RS ELECTRICS <" . $from_email . ">";
+$headers[] = "Reply-To: " . $email;
+$headers[] = "X-Mailer: PHP/" . phpversion();
+$headers[] = "Content-Type: text/plain; charset=UTF-8";
+$headers[] = "MIME-Version: 1.0";
+$headers[] = "X-Priority: 3";
+$headers[] = "X-MSMail-Priority: Normal";
+$headers_string = implode("\r\n", $headers);
 
 // Wysyłka maila przez mail()
 // Parametr -f wymusza użycie adresu From (pomaga na niektórych hostingach)
 $additional_params = '-f' . $from_email;
 
-$mail_sent = mail($to_email, $email_subject, $email_body, $headers, $additional_params);
+logError("Attempting to send email", [
+    'to' => $to_email,
+    'subject' => $email_subject,
+    'from' => $from_email
+]);
+
+// Wyczyść poprzednie błędy
+error_clear_last();
+
+$mail_sent = @mail($to_email, $email_subject, $email_body, $headers_string, $additional_params);
 
 // Sprawdź błędy PHP
 $last_error = error_get_last();
-if ($last_error && strpos($last_error['message'], 'mail') !== false) {
-    logError("PHP error during mail() call", ['error' => $last_error['message']]);
-    header('Location: ' . $error_url . '&reason=server');
-    exit;
+if ($last_error) {
+    logError("PHP error detected", [
+        'error' => $last_error['message'],
+        'file' => $last_error['file'] ?? 'unknown',
+        'line' => $last_error['line'] ?? 'unknown'
+    ]);
 }
 
 if ($mail_sent) {
-    // Sukces - przekieruj na stronę dziękujemy
+    logError("Email sent successfully", [
+        'to' => $to_email,
+        'subject' => $form_subject,
+        'ip' => $client_ip
+    ]);
+    
+    // Wyczyść output buffer i przekieruj
+    ob_end_clean();
     header('Location: ' . $redirect_url);
     exit;
 } else {
-    logError("Email sending failed", ['ip' => $client_ip]);
+    logError("Email sending failed - mail() returned FALSE", [
+        'to' => $to_email,
+        'ip' => $client_ip,
+        'last_error' => $last_error ? $last_error['message'] : 'none'
+    ]);
     
     // Backup - zapisz dane do pliku jeśli mail nie został wysłany
     $backup_file = __DIR__ . '/form-submissions-backup.txt';
     $backup_data = date('Y-m-d H:i:s') . " | " . $name . " | " . $phone . " | " . $email . " | " . $subject . "\n";
     @file_put_contents($backup_file, $backup_data, FILE_APPEND);
+    logError("Saved form submission to backup file", ['file' => $backup_file]);
     
+    // Wyczyść output buffer i przekieruj
+    ob_end_clean();
     header('Location: ' . $error_url . '&reason=server');
     exit;
 }
