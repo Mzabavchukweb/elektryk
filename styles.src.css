@@ -451,22 +451,6 @@ ul, ol {
   box-shadow: 0 0 0 3px var(--glow-soft);
 }
 
-/* Input States */
-.form-input-error {
-  border-color: var(--error-500);
-}
-
-.form-input-error:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
-}
-
-.form-error-message {
-  font-size: var(--text-xs);
-  color: var(--error-500);
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-}
 
 /* Textarea */
 /* Checkbox */
