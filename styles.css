@@ -2097,6 +2097,9 @@ a.hero-feature:hover {
   display: flex;
   flex-direction: column;
   transition: all var(--duration-normal);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .service-category-card:hover {
