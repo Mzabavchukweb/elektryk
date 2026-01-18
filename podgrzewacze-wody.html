@@ -228,11 +228,12 @@
             <p class="hero-form-subtitle">Wycena montażu podgrzewacza – gratis</p>
           </div>
           
-          <form action="https://formsubmit.co/kontakt@elektrykgorzow.com" method="POST">
-            <input type="hidden" name="_subject" value="Nowe zapytanie z elektrykgorzow.com">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://elektrykgorzow.com/thank-you.html">
-            <input type="hidden" name="_template" value="table">
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="d18275f5-1647-4672-a8ae-f0057f7cad0a">
+
+            <input type="hidden" name="subject" value="Nowe zapytanie z elektrykgorzow.com">
+
+            <input type="hidden" name="from_name" value="Formularz kontaktowy - elektrykgorzow.com">
             <div class="form-group"><label class="form-label" for="name">Imię i nazwisko</label><input type="text" id="name" name="name" class="form-input" placeholder="Jan Kowalski" autocomplete="name" required></div>
             <div class="form-group"><label class="form-label" for="phone">Numer telefonu</label><input type="tel" id="phone" name="phone" class="form-input" placeholder="np. 600 000 000" autocomplete="tel" required></div>
             <div class="form-group"><label class="form-label" for="email">E-mail</label><input type="email" id="email" name="email" class="form-input" placeholder="jan@example.pl" autocomplete="email" required></div>

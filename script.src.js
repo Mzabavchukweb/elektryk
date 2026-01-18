@@ -212,9 +212,8 @@ function initCableTimeline() {
    ============================================ */
 
 function initForms() {
-  // Formularze są tylko wizualne - bez funkcjonalności wysyłki
   document.querySelectorAll('form').forEach(form => {
-    // Tylko formatowanie telefonu i style (focus/blur) - bez logiki wysyłki
+    // Form field focus/blur styling
     form.addEventListener('focusin', (e) => {
       if (e.target.matches('.form-input')) e.target.parentElement?.classList.add('focused');
     });
@@ -224,14 +223,59 @@ function initForms() {
         e.target.parentElement?.classList.toggle('filled', !!e.target.value);
       }
     });
+    
+    // Phone number formatting
     form.addEventListener('input', (e) => {
       if (e.target.type === 'tel') formatPhone(e);
     });
     
-    // Blokuj domyślne wysłanie formularza (formularze są tylko wizualne)
-    form.addEventListener('submit', (e) => {
+    // Handle Web3Forms submission
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      return false;
+      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (!submitBtn) return;
+      
+      const originalText = submitBtn.querySelector('.btn-text')?.textContent || submitBtn.textContent;
+      const formData = new FormData(form);
+      
+      // Set button to loading state
+      if (submitBtn.querySelector('.btn-text')) {
+        submitBtn.querySelector('.btn-text').textContent = 'Wysyłanie...';
+      } else {
+        submitBtn.textContent = 'Wysyłanie...';
+      }
+      submitBtn.disabled = true;
+      
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+          // Success - redirect to thank you page
+          window.location.href = 'thank-you.html';
+        } else {
+          // Error from Web3Forms
+          alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie lub skontaktuj się telefonicznie: 669 899 443');
+          console.error('Web3Forms error:', data);
+        }
+      } catch (error) {
+        // Network or other error
+        alert('Nie udało się wysłać formularza. Sprawdź połączenie internetowe i spróbuj ponownie.');
+        console.error('Form submission error:', error);
+      } finally {
+        // Restore button state
+        if (submitBtn.querySelector('.btn-text')) {
+          submitBtn.querySelector('.btn-text').textContent = originalText;
+        } else {
+          submitBtn.textContent = originalText;
+        }
+        submitBtn.disabled = false;
+      }
     });
   });
 }
