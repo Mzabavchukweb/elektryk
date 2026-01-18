@@ -233,29 +233,31 @@ function initForms() {
 
 function handleSubmit(e) {
   const form = e.target;
-  const btn = form.querySelector('button[type="submit"]');
+  const formAction = form.getAttribute('action');
   
-  // Walidacja przed wysłaniem
+  // Jeśli formularz ma action="send-mail.php" - NIE BLOKUJ, pozwól na normalne wysłanie
+  // Przeglądarka sama zwaliduje pola required, więc nie musimy tego robić w JS
+  if (formAction && formAction.includes('send-mail.php')) {
+    // Tylko pokaż loading state, ale NIE używaj preventDefault()
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+      const originalContent = btn.innerHTML;
+      btn.classList.add('btn-loading');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="btn-text" style="opacity:0">Wysyłanie...</span>';
+    }
+    // WAŻNE: NIE wywołuj preventDefault() - pozwól formularzowi wysłać się normalnie
+    // Przeglądarka sama obsłuży walidację HTML5 (pola required)
+    return; // Pozwól na domyślne zachowanie - formularz się wyśle
+  }
+  
+  // Dla innych formularzy (jeśli są) - walidacja i symulacja
+  const btn = form.querySelector('button[type="submit"]');
   if (!btn || !validateForm(form)) {
     e.preventDefault();
     return false;
   }
 
-  // Jeśli formularz ma action="send-mail.php" - pozwól na normalne wysłanie
-  const formAction = form.getAttribute('action');
-  if (formAction && (formAction.includes('send-mail.php') || formAction.includes('formsubmit') || formAction.includes('mail'))) {
-    // Pozwól formularzowi wysłać się normalnie
-    // Tylko pokaż loading state
-    const originalContent = btn.innerHTML;
-    btn.classList.add('btn-loading');
-    btn.disabled = true;
-    btn.innerHTML = '<span class="btn-text" style="opacity:0">Wysyłanie...</span>';
-    
-    // Formularz wyśle się normalnie, przekierowanie obsłuży PHP
-    return true; // Pozwól na domyślne zachowanie
-  }
-
-  // Dla innych formularzy (jeśli są) - stara logika
   e.preventDefault();
   const originalContent = btn.innerHTML;
   btn.classList.add('btn-loading');
