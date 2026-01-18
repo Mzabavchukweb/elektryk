@@ -20,14 +20,6 @@ function logError($message, $data = []) {
     error_log($log, 3, __DIR__ . '/form-errors.log');
 }
 
-// Loguj każdy request (do debugowania)
-logError("Request received", [
-    'method' => $_SERVER['REQUEST_METHOD'],
-    'uri' => $_SERVER['REQUEST_URI'] ?? 'unknown',
-    'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
-    'post_data' => !empty($_POST) ? 'yes' : 'no'
-]);
-
 // Zabezpieczenie przed bezpośrednim dostępem
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     logError("Nieprawidłowa metoda HTTP", ['method' => $_SERVER['REQUEST_METHOD']]);
@@ -37,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Ustawienia
 $to_email = 'kontakt@elektrykgorzow.com';
-$redirect_url = 'https://elektrykgorzow.com/dziekujemy.html';
-$error_url = 'https://elektrykgorzow.com/kontakt.html?error=1';
+$redirect_url = '/dziekujemy.html';
+$error_url = '/kontakt.html?error=1';
 
 // Rate limiting - sprawdź czy nie za dużo requestów z tego IP
 $rate_limit_file = __DIR__ . '/rate-limit.json';
@@ -147,46 +139,27 @@ $headers .= "X-MSMail-Priority: Normal\r\n";
 // Parametr -f wymusza użycie adresu From (pomaga na niektórych hostingach)
 $additional_params = '-f' . $from_email;
 
-logError("Sending email via mail()", [
-    'to' => $to_email,
-    'subject' => $email_subject,
-    'from' => $from_email,
-    'ip' => $client_ip
-]);
-
 $mail_sent = mail($to_email, $email_subject, $email_body, $headers, $additional_params);
 
 // Sprawdź błędy PHP
 $last_error = error_get_last();
 if ($last_error && strpos($last_error['message'], 'mail') !== false) {
-    logError("PHP error during mail() call", [
-        'error' => $last_error['message'],
-        'file' => $last_error['file'],
-        'line' => $last_error['line']
-    ]);
+    logError("PHP error during mail() call", ['error' => $last_error['message']]);
     header('Location: ' . $error_url . '&reason=server');
     exit;
 }
 
 if ($mail_sent) {
-    logError("Email sent successfully", [
-        'to' => $to_email,
-        'subject' => $form_subject,
-        'ip' => $client_ip
-    ]);
+    // Sukces - przekieruj na stronę dziękujemy
     header('Location: ' . $redirect_url);
     exit;
 } else {
-    logError("Email sending failed - mail() returned FALSE", [
-        'to' => $to_email,
-        'ip' => $client_ip
-    ]);
+    logError("Email sending failed", ['ip' => $client_ip]);
     
     // Backup - zapisz dane do pliku jeśli mail nie został wysłany
     $backup_file = __DIR__ . '/form-submissions-backup.txt';
     $backup_data = date('Y-m-d H:i:s') . " | " . $name . " | " . $phone . " | " . $email . " | " . $subject . "\n";
     @file_put_contents($backup_file, $backup_data, FILE_APPEND);
-    logError("Saved form submission to backup file", ['file' => $backup_file]);
     
     header('Location: ' . $error_url . '&reason=server');
     exit;

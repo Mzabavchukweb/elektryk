@@ -213,9 +213,15 @@ function initCableTimeline() {
 
 function initForms() {
   document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', handleSubmit);
+    const formAction = form.getAttribute('action');
+    
+    // Dla formularzy z send-mail.php - NIE dodawaj event listenera submit
+    // Pozwól im działać natywnie (przeglądarka obsłuży walidację i wysyłkę)
+    if (!formAction || !formAction.includes('send-mail.php')) {
+      form.addEventListener('submit', handleSubmit);
+    }
 
-    // Event delegation for input focus/blur
+    // Event delegation for input focus/blur (dla wszystkich formularzy)
     form.addEventListener('focusin', (e) => {
       if (e.target.matches('.form-input')) e.target.parentElement?.classList.add('focused');
     });
@@ -232,27 +238,11 @@ function initForms() {
 }
 
 function handleSubmit(e) {
+  // Ta funkcja jest używana tylko dla formularzy BEZ send-mail.php
+  // Formularze z send-mail.php działają natywnie (bez JavaScript)
   const form = e.target;
-  const formAction = form.getAttribute('action');
-  
-  // Jeśli formularz ma action="send-mail.php" - NIE BLOKUJ, pozwól na normalne wysłanie
-  // Przeglądarka sama zwaliduje pola required, więc nie musimy tego robić w JS
-  if (formAction && formAction.includes('send-mail.php')) {
-    // Tylko pokaż loading state, ale NIE używaj preventDefault()
-    const btn = form.querySelector('button[type="submit"]');
-    if (btn) {
-      const originalContent = btn.innerHTML;
-      btn.classList.add('btn-loading');
-      btn.disabled = true;
-      btn.innerHTML = '<span class="btn-text" style="opacity:0">Wysyłanie...</span>';
-    }
-    // WAŻNE: NIE wywołuj preventDefault() - pozwól formularzowi wysłać się normalnie
-    // Przeglądarka sama obsłuży walidację HTML5 (pola required)
-    return; // Pozwól na domyślne zachowanie - formularz się wyśle
-  }
-  
-  // Dla innych formularzy (jeśli są) - walidacja i symulacja
   const btn = form.querySelector('button[type="submit"]');
+  
   if (!btn || !validateForm(form)) {
     e.preventDefault();
     return false;
