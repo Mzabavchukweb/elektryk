@@ -1,44 +1,134 @@
-# =============================================
-# RS ELECTRICS - Konfiguracja domeny
-# Canonical: https://elektrykgorzow.com (bez www)
-# =============================================
+# ================================================
+# RS ELECTRICS - .htaccess Security & Performance
+# ================================================
 
-# Włącz RewriteEngine
+# Redirect HTTP to HTTPS
 RewriteEngine On
-
-# 1. Wymuś HTTPS (http -> https)
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 2. Usuń www (www -> non-www)
-RewriteCond %{HTTP_HOST} ^www\.elektrykgorzow\.com$ [NC]
-RewriteRule ^(.*)$ https://elektrykgorzow.com/$1 [L,R=301]
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# =============================================
-# Optymalizacja wydajności
-# =============================================
+# ================================================
+# Security Headers
+# ================================================
 
-# Kompresja GZIP
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml
-</IfModule>
-
-# Cache przeglądarki
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType text/html "access plus 1 hour"
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-</IfModule>
-
-# Nagłówki bezpieczeństwa
 <IfModule mod_headers.c>
-  Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # X-Content-Type-Options - Prevent MIME-type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # X-Frame-Options - Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # X-XSS-Protection - Enable browser XSS filter
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer-Policy - Control referrer information
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions-Policy - Control browser features
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+    
+    # Content-Security-Policy - Protect against XSS and injection attacks
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com https://maps.google.com; connect-src 'self' https://www.google-analytics.com https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io"
+    
+    # Strict-Transport-Security (HSTS) - Force HTTPS
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Remove X-Powered-By header
+    Header unset X-Powered-By
+</IfModule>
+
+# ================================================
+# Compression (GZIP)
+# ================================================
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ================================================
+# Browser Caching
+# ================================================
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Fonts
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # CSS & JS
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # Web manifest
+    ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>
+
+# ================================================
+# ETag removal (better caching)
+# ================================================
+
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# ================================================
+# Prevent Directory Browsing
+# ================================================
+
+Options -Indexes
+
+# ================================================
+# Block Access to Sensitive Files
+# ================================================
+
+<FilesMatch "(^\.htaccess|\.htpasswd|\.git|\.env|package\.json|package-lock\.json)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# ================================================
+# Custom Error Pages (optional)
+# ================================================
+
+ErrorDocument 404 /404.html
+
+# ================================================
+# Additional Performance
+# ================================================
+
+# Enable Keep-Alive
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
+
+# Serve pre-compressed files if available
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP:Accept-Encoding} gzip
+    RewriteCond %{REQUEST_FILENAME}.gz -f
+    RewriteRule ^(.*)$ $1.gz [L]
 </IfModule>
