@@ -348,6 +348,11 @@
             <p class="hero-form-subtitle">Oddzwonimy możliwie najszybciej</p>
           </div>
           
+          <!-- Komunikat błędu -->
+          <div id="form-error-message" class="form-error-message" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 12px; margin-bottom: 20px; color: #ef4444; font-size: 14px;">
+            <strong>Błąd wysyłki formularza.</strong> Prosimy spróbować ponownie lub zadzwonić: <a href="tel:+48669899443" style="color: #ef4444; text-decoration: underline;">669 899 443</a>
+          </div>
+          
           <form action="send-mail.php" method="POST">
             <input type="hidden" name="_subject" value="Nowe zapytanie ze strony Kontakt">
             <input type="text" name="_honey" style="display:none">
@@ -687,5 +692,23 @@
   <div class="particles-container"></div>
 
   <script src="script.js" defer></script>
+  <script>
+    // Sprawdź czy jest błąd w URL
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('error') === '1') {
+        const errorMsg = document.getElementById('form-error-message');
+        if (errorMsg) {
+          errorMsg.style.display = 'block';
+          errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Ukryj po 10 sekundach
+          setTimeout(() => {
+            errorMsg.style.display = 'none';
+          }, 10000);
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

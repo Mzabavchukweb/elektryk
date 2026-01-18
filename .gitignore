@@ -1,1 +1,8 @@
 node_modules/
+
+# Logi formularzy
+form-errors.log
+rate-limit.json
+
+# PHPMailer (jeśli dodasz)
+PHPMailer/

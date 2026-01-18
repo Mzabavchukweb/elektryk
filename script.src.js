@@ -232,11 +232,31 @@ function initForms() {
 }
 
 function handleSubmit(e) {
-  e.preventDefault();
   const form = e.target;
   const btn = form.querySelector('button[type="submit"]');
-  if (!btn || !validateForm(form)) return;
+  
+  // Walidacja przed wysłaniem
+  if (!btn || !validateForm(form)) {
+    e.preventDefault();
+    return false;
+  }
 
+  // Jeśli formularz ma action="send-mail.php" - pozwól na normalne wysłanie
+  const formAction = form.getAttribute('action');
+  if (formAction && (formAction.includes('send-mail.php') || formAction.includes('formsubmit') || formAction.includes('mail'))) {
+    // Pozwól formularzowi wysłać się normalnie
+    // Tylko pokaż loading state
+    const originalContent = btn.innerHTML;
+    btn.classList.add('btn-loading');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="btn-text" style="opacity:0">Wysyłanie...</span>';
+    
+    // Formularz wyśle się normalnie, przekierowanie obsłuży PHP
+    return true; // Pozwól na domyślne zachowanie
+  }
+
+  // Dla innych formularzy (jeśli są) - stara logika
+  e.preventDefault();
   const originalContent = btn.innerHTML;
   btn.classList.add('btn-loading');
   btn.innerHTML = '<span class="btn-text" style="opacity:0">Wysyłanie</span>';
