@@ -3,6 +3,7 @@ node_modules/
 # Logi formularzy
 form-errors.log
 rate-limit.json
+form-submissions-backup.txt
 
 # PHPMailer (jeśli dodasz)
 PHPMailer/
