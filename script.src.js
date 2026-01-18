@@ -213,15 +213,24 @@ function initCableTimeline() {
 
 function initForms() {
   document.querySelectorAll('form').forEach(form => {
-    const formAction = form.getAttribute('action');
+    const formAction = form.getAttribute('action') || '';
     
-    // Dla formularzy z send-mail.php - NIE dodawaj event listenera submit
-    // Pozwól im działać natywnie (przeglądarka obsłuży walidację i wysyłkę)
-    if (!formAction || !formAction.includes('send-mail.php')) {
-      form.addEventListener('submit', handleSubmit);
+    // WAŻNE: Dla formularzy z send-mail.php - CAŁKOWICIE POMIŃ JavaScript
+    // Pozwól im działać w 100% natywnie (bez żadnych event listenerów submit)
+    if (formAction.includes('send-mail.php')) {
+      // Tylko formatowanie telefonu (nie blokuje wysyłki) - to jest OK
+      form.addEventListener('input', (e) => {
+        if (e.target.type === 'tel') formatPhone(e);
+      });
+      // NIE dodawaj żadnych innych event listenerów - formularz działa natywnie
+      // NIE dodawaj handleSubmit - pozwól przeglądarce obsłużyć submit
+      return; // Pomiń resztę kodu dla tego formularza
     }
 
-    // Event delegation for input focus/blur (dla wszystkich formularzy)
+    // Dla innych formularzy (jeśli są) - dodaj event listenery
+    form.addEventListener('submit', handleSubmit);
+
+    // Event delegation for input focus/blur
     form.addEventListener('focusin', (e) => {
       if (e.target.matches('.form-input')) e.target.parentElement?.classList.add('focused');
     });

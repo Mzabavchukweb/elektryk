@@ -20,6 +20,15 @@ function logError($message, $data = []) {
     error_log($log, 3, __DIR__ . '/form-errors.log');
 }
 
+// Loguj każdy request (diagnostyka)
+logError("=== REQUEST ===", [
+    'method' => $_SERVER['REQUEST_METHOD'] ?? 'unknown',
+    'uri' => $_SERVER['REQUEST_URI'] ?? 'unknown',
+    'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
+    'post' => !empty($_POST) ? 'YES' : 'NO',
+    'post_keys' => !empty($_POST) ? implode(', ', array_keys($_POST)) : 'none'
+]);
+
 // Zabezpieczenie przed bezpośrednim dostępem
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     logError("Nieprawidłowa metoda HTTP", ['method' => $_SERVER['REQUEST_METHOD']]);
