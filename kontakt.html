@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1ZTWVBTKP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q1ZTWVBTKP');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kontakt – RS ELECTRICS. Elektryk Gorzów Wielkopolski, instalacje, pomiary SEP, modernizacje, pogotowie elektryczne. Dojazd do 70 km. 669 899 443.">
@@ -338,7 +348,9 @@
             <p class="hero-form-subtitle">Oddzwonimy możliwie najszybciej</p>
           </div>
           
-          <form action="#" method="POST">
+          <form action="send-mail.php" method="POST">
+            <input type="hidden" name="_subject" value="Nowe zapytanie ze strony Kontakt">
+            <input type="text" name="_honey" style="display:none">
             <div class="form-group">
               <label class="form-label" for="contact-name">Imię i nazwisko</label>
               <input type="text" id="contact-name" name="name" class="form-input" placeholder="Jan Kowalski" autocomplete="name" required>

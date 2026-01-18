@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1ZTWVBTKP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q1ZTWVBTKP');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="⚡ Stacja ładowania samochodów elektrycznych Gorzów – montaż wallboxów w domach i firmach. Przyłącza, konfiguracja, odbiory. Bezpłatna wycena ☎ 669 899 443">
@@ -196,7 +206,9 @@
         
         <div class="hero-form animate-on-scroll" id="hero-form">
           <div class="hero-form-header"><h2 class="hero-form-title">Bezpłatna wycena</h2><p class="hero-form-subtitle">Opisz planowany montaż wallboxa</p></div>
-          <form action="#" method="POST">
+          <form action="send-mail.php" method="POST">
+            <input type="hidden" name="_subject" value="Zapytanie: Stacja ładowania EV">
+            <input type="text" name="_honey" style="display:none">
             <div class="form-group"><label class="form-label" for="name">Imię i nazwisko</label><input type="text" id="name" name="name" class="form-input" placeholder="Jan Kowalski" autocomplete="name" required></div>
             <div class="form-group"><label class="form-label" for="phone">Numer telefonu</label><input type="tel" id="phone" name="phone" class="form-input" placeholder="np. 600 000 000" autocomplete="tel" required></div>
             <div class="form-group"><label class="form-label" for="email">E-mail</label><input type="email" id="email" name="email" class="form-input" placeholder="jan@example.pl" autocomplete="email" required></div>

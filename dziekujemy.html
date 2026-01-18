@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1ZTWVBTKP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q1ZTWVBTKP');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dziękujemy za wiadomość – RS ELECTRICS. Skontaktujemy się z Tobą najszybciej jak to możliwe. Tel. 669 899 443.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://elektrykgorzow.com/dziekujemy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="RS ELECTRICS">
+  <meta property="og:title" content="Dziękujemy za wiadomość | RS ELECTRICS">
+  <meta property="og:description" content="Dziękujemy za kontakt. Odezwiemy się najszybciej jak to możliwe.">
+  <meta property="og:url" content="https://elektrykgorzow.com/dziekujemy.html">
+  <meta property="og:image" content="https://elektrykgorzow.com/elektryk.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dziękujemy za wiadomość | RS ELECTRICS">
+  <meta name="twitter:description" content="Dziękujemy za kontakt. Odezwiemy się najszybciej jak to możliwe.">
+  <meta name="twitter:image" content="https://elektrykgorzow.com/elektryk.png">
+  <title>Dziękujemy za wiadomość | RS ELECTRICS</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .thank-you-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-20) var(--space-4);
+      background: var(--surface-900);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .thank-you-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 30% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .thank-you-content {
+      text-align: center;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .thank-you-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto var(--space-8);
+      background: rgba(34, 197, 94, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--success-500);
+      animation: success-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes success-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); transform: scale(1); }
+      50% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); transform: scale(1.02); }
+    }
+    
+    .thank-you-icon svg {
+      width: 60px;
+      height: 60px;
+      color: var(--success-500);
+      animation: check-draw 0.8s ease-out forwards;
+    }
+    
+    @keyframes check-draw {
+      0% { stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0; }
+      50% { opacity: 1; }
+      100% { stroke-dasharray: 100; stroke-dashoffset: 0; opacity: 1; }
+    }
+    
+    .thank-you-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--space-4);
+    }
+    
+    .thank-you-title .highlight {
+      color: var(--success-500);
+    }
+    
+    .thank-you-description {
+      font-size: var(--text-lg);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-8);
+    }
+    
+    .thank-you-info {
+      background: var(--surface-700);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      margin-bottom: var(--space-8);
+      border: 1px solid var(--surface-500);
+    }
+    
+    .thank-you-info-title {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wider);
+      margin-bottom: var(--space-4);
+    }
+    
+    .thank-you-info-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    
+    .thank-you-info-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--text-secondary);
+    }
+    
+    .thank-you-info-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary-500);
+      flex-shrink: 0;
+    }
+    
+    .thank-you-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      justify-content: center;
+      margin-bottom: var(--space-8);
+    }
+    
+    .thank-you-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      justify-content: center;
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--surface-500);
+    }
+    
+    .thank-you-contact-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: var(--text-lg);
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    
+    .thank-you-contact-item:hover {
+      color: var(--primary-500);
+    }
+    
+    .thank-you-contact-item svg {
+      width: 22px;
+      height: 22px;
+      color: var(--primary-500);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-inner">
+          <div class="header-contact">
+            <a href="tel:+48669899443" class="header-contact-item header-contact-phone">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>669 899 443</span>
+            </a>
+            <a href="mailto:kontakt@elektrykgorzow.com" class="header-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>kontakt@elektrykgorzow.com</span>
+            </a>
+          </div>
+          <div class="header-social">
+            <a href="https://share.google/p9uoswHRN3Q4X8bmo" target="_blank" rel="noopener noreferrer" class="header-social-link" aria-label="Opinie Google">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              <span>Opinie Google</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="header-main">
+      <div class="container">
+        <div class="header-main-inner">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">
+              <img src="elektryk.png" alt="RS ELECTRICS" width="160" height="160">
+            </div>
+          </a>
+          
+          <div class="nav">
+            <a href="index.html" class="nav-link">Strona główna</a>
+            <a href="o-nas.html" class="nav-link">O nas</a>
+            <a href="uslugi.html" class="nav-link">Usługi</a>
+            <a href="realizacje.html" class="nav-link">Realizacje</a>
+            <a href="kontakt.html" class="nav-link">Kontakt</a>
+          </div>
+          
+          <div class="header-cta">
+            <a href="tel:+48669899443" class="btn btn-primary">Zadzwoń teraz</a>
+          </div>
+          
+          <button class="menu-toggle" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <img src="elektryk.png" alt="RS ELECTRICS" width="80" height="80">
+        </div>
+      </a>
+      
+      <a href="index.html" class="mobile-nav-link">Strona główna</a>
+      <a href="o-nas.html" class="mobile-nav-link">O nas</a>
+      <a href="uslugi.html" class="mobile-nav-link">Usługi</a>
+      <a href="realizacje.html" class="mobile-nav-link">Realizacje</a>
+      <a href="kontakt.html" class="mobile-nav-link">Kontakt</a>
+      
+      <div class="mobile-nav-cta">
+        <a href="tel:+48669899443" class="btn btn-primary btn-lg" style="width: 100%;">Zadzwoń teraz</a>
+      </div>
+      
+      <div class="mobile-nav-contact">
+        <a href="tel:+48669899443" class="mobile-nav-contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>669 899 443</span>
+        </a>
+        <a href="mailto:kontakt@elektrykgorzow.com" class="mobile-nav-contact-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>kontakt@elektrykgorzow.com</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thank You Section -->
+  <section class="thank-you-section">
+    <div class="thank-you-content">
+      <div class="thank-you-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      
+      <h1 class="thank-you-title">Dziękujemy za <span class="highlight">wiadomość!</span></h1>
+      
+      <p class="thank-you-description">
+        Twoje zapytanie zostało wysłane. Skontaktujemy się z Tobą najszybciej jak to możliwe – zwykle odpowiadamy w ciągu kilku godzin.
+      </p>
+      
+      <div class="thank-you-info">
+        <p class="thank-you-info-title">Co dalej?</p>
+        <div class="thank-you-info-items">
+          <div class="thank-you-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Przeanalizujemy Twoje zapytanie</span>
+          </div>
+          <div class="thank-you-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Oddzwonimy lub odpiszemy na maila</span>
+          </div>
+          <div class="thank-you-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Przygotujemy wycenę (bezpłatnie)</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="thank-you-actions">
+        <a href="index.html" class="btn btn-primary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span class="btn-text">Strona główna</span>
+        </a>
+        <a href="uslugi.html" class="btn btn-secondary btn-lg">
+          <span class="btn-text">Zobacz usługi</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      
+      <div class="thank-you-contact">
+        <a href="tel:+48669899443" class="thank-you-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>669 899 443</span>
+        </a>
+        <a href="mailto:kontakt@elektrykgorzow.com" class="thank-you-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>kontakt@elektrykgorzow.com</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Contact Button -->
+  <div class="floating-contact">
+    <a href="tel:+48669899443" class="floating-contact-btn" aria-label="Zadzwoń">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="floating-contact-badge">1</span>
+    </a>
+  </div>
+
+  <!-- Particles -->
+  <div class="particles-container"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

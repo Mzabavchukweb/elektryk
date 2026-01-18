@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1ZTWVBTKP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q1ZTWVBTKP');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="⚡ Oświetlenie awaryjne Gorzów Wielkopolski – montaż opraw ewakuacyjnych, piktogramów EXIT, systemów PPOŻ. Przeglądy i serwis. ☎ 669 899 443">
@@ -384,7 +394,9 @@
             <p class="hero-form-subtitle">Oświetlenie awaryjne – gratis wycena</p>
           </div>
           
-          <form action="#" method="POST">
+          <form action="send-mail.php" method="POST">
+            <input type="hidden" name="_subject" value="Zapytanie: Oświetlenie awaryjne">
+            <input type="text" name="_honey" style="display:none">
             <div class="form-group">
               <label class="form-label" for="name">Imię i nazwisko</label>
               <input type="text" id="name" name="name" class="form-input" placeholder="Jan Kowalski" autocomplete="name" required>

@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1ZTWVBTKP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q1ZTWVBTKP');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Realizacje RS ELECTRICS – instalacje elektryczne, modernizacje, smart home i oświetlenie. Projekty w Gorzowie Wielkopolskim i w promieniu 70 km.">
@@ -363,7 +373,9 @@
             <p class="hero-form-subtitle">Oddzwonimy możliwie najszybciej</p>
           </div>
           
-          <form action="#" method="POST">
+          <form action="send-mail.php" method="POST">
+            <input type="hidden" name="_subject" value="Zapytanie ze strony Realizacje">
+            <input type="text" name="_honey" style="display:none">
             <div class="form-group">
               <label class="form-label" for="name">Imię i nazwisko</label>
               <input type="text" id="name" name="name" class="form-input" placeholder="Jan Kowalski" autocomplete="name" required>
