@@ -1,7 +1,7 @@
 <?php
 /**
  * RS ELECTRICS - Form Handler
- * Wersja z logowaniem błędów i PHPMailer fallback
+ * Obsługa formularzy kontaktowych
  */
 
 // Włącz logowanie błędów
@@ -126,34 +126,26 @@ $email_body .= "IP: " . $client_ip . "\n";
 $email_body .= "User-Agent: " . ($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown') . "\n";
 
 // Nagłówki maila
-// WAŻNE: Na wielu hostingach trzeba użyć adresu email z domeny hostingu
 $from_email = 'noreply@elektrykgorzow.com';
 $headers = "From: RS ELECTRICS <" . $from_email . ">\r\n";
 $headers .= "Reply-To: " . $email . "\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
-
-// Dodatkowe nagłówki dla lepszej kompatybilności
 $headers .= "X-Priority: 3\r\n";
 $headers .= "X-MSMail-Priority: Normal\r\n";
 
-// Próba wysyłki przez mail()
-// Uwaga: mail() może zwrócić true nawet jeśli mail nie został wysłany!
-// Na wielu hostingach mail() jest zablokowany lub wymaga specjalnej konfiguracji
+// Wysyłka maila przez mail()
+// Parametr -f wymusza użycie adresu From (pomaga na niektórych hostingach)
+$additional_params = '-f' . $from_email;
 
-logError("Attempting to send email via mail()", [
+logError("Sending email via mail()", [
     'to' => $to_email,
-    'from' => 'noreply@elektrykgorzow.com',
     'subject' => $email_subject,
+    'from' => $from_email,
     'ip' => $client_ip
 ]);
 
-// Próba 1: Standardowe mail() z dodatkowym parametrem -f (często pomaga)
-// Parametr -f wymusza użycie adresu From i czasem pomaga na hostingach
-$additional_params = '-f' . $from_email;
-
-// Wyłącz error suppression żeby zobaczyć błędy w logach
 $mail_sent = mail($to_email, $email_subject, $email_body, $headers, $additional_params);
 
 // Sprawdź błędy PHP
@@ -164,175 +156,31 @@ if ($last_error && strpos($last_error['message'], 'mail') !== false) {
         'file' => $last_error['file'],
         'line' => $last_error['line']
     ]);
+    header('Location: ' . $error_url . '&reason=server');
+    exit;
 }
 
 if ($mail_sent) {
-    logError("mail() returned TRUE - email may or may not have been sent", [
+    logError("Email sent successfully", [
         'to' => $to_email,
         'subject' => $form_subject,
-        'ip' => $client_ip,
-        'note' => 'mail() can return true even if email was blocked by server'
+        'ip' => $client_ip
     ]);
-    
-    // UWAGA: Na wielu hostingach mail() zwraca true ale nie wysyła!
-    // Sprawdź czy mail faktycznie przyszedł do skrzynki
-    // Jeśli nie - użyj PHPMailer z SMTP
-    
     header('Location: ' . $redirect_url);
     exit;
 } else {
-    logError("mail() returned FALSE - email definitely not sent", [
+    logError("Email sending failed - mail() returned FALSE", [
         'to' => $to_email,
         'ip' => $client_ip
     ]);
-}
-
-// Jeśli mail() nie zadziałało lub zwróciło false, spróbuj alternatywne metody
-logError("mail() failed or returned false, attempting alternative methods", [
-    'to' => $to_email,
-    'ip' => $client_ip,
-    'mail_function_exists' => function_exists('mail')
-]);
-
-// Metoda 1: Spróbuj użyć ini_set dla sendmail_path (jeśli dostępne)
-$sendmail_available = false;
-if (function_exists('ini_set')) {
-    // Niektóre hostingi wymagają ustawienia sendmail_path
-    $current_sendmail = ini_get('sendmail_path');
-    logError("Current sendmail_path", ['path' => $current_sendmail]);
-}
-
-// Metoda 2: Spróbuj przez PHPMailer (jeśli dostępny)
-$phpmailer_path = __DIR__ . '/PHPMailer/PHPMailer.php';
-if (file_exists($phpmailer_path)) {
-    require_once $phpmailer_path;
-    require_once __DIR__ . '/PHPMailer/SMTP.php';
-    require_once __DIR__ . '/PHPMailer/Exception.php';
     
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+    // Backup - zapisz dane do pliku jeśli mail nie został wysłany
+    $backup_file = __DIR__ . '/form-submissions-backup.txt';
+    $backup_data = date('Y-m-d H:i:s') . " | " . $name . " | " . $phone . " | " . $email . " | " . $subject . "\n";
+    @file_put_contents($backup_file, $backup_data, FILE_APPEND);
+    logError("Saved form submission to backup file", ['file' => $backup_file]);
     
-    $phpmailer = new PHPMailer(true);
-    
-    try {
-        // Konfiguracja SMTP (dostosuj do swojego hostingu)
-        $phpmailer->isSMTP();
-        $phpmailer->Host = 'smtp.seohost.pl'; // lub inny SMTP hostingu
-        $phpmailer->SMTPAuth = true;
-        $phpmailer->Username = 'kontakt@elektrykgorzow.com';
-        $phpmailer->Password = 'HASŁO_TUTAJ'; // TODO: ustaw hasło
-        $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $phpmailer->Port = 587;
-        $phpmailer->CharSet = 'UTF-8';
-        
-        // Nadawca i odbiorca
-        $phpmailer->setFrom('noreply@elektrykgorzow.com', 'RS ELECTRICS');
-        $phpmailer->addAddress($to_email);
-        $phpmailer->addReplyTo($email, $name);
-        
-        // Treść
-        $phpmailer->Subject = $email_subject;
-        $phpmailer->Body = $email_body;
-        $phpmailer->isHTML(false);
-        
-        $phpmailer->send();
-        
-        logError("Email sent successfully via PHPMailer", [
-            'to' => $to_email,
-            'subject' => $form_subject,
-            'ip' => $client_ip
-        ]);
-        
-        header('Location: ' . $redirect_url);
-        exit;
-        
-    } catch (Exception $e) {
-        logError("PHPMailer failed", [
-            'error' => $phpmailer->ErrorInfo,
-            'ip' => $client_ip
-        ]);
-    }
+    header('Location: ' . $error_url . '&reason=server');
+    exit;
 }
-
-// Metoda 3: Spróbuj prostego SMTP przez socket (fallback)
-logError("Attempting simple SMTP fallback", ['to' => $to_email]);
-
-// Prosty SMTP dla SEOHost (dostosuj dane)
-$smtp_host = 'smtp.seohost.pl'; // lub inny SMTP hostingu
-$smtp_port = 587;
-$smtp_user = 'kontakt@elektrykgorzow.com';
-$smtp_pass = ''; // TODO: ustaw hasło jeśli potrzebne
-
-// Próba prostego SMTP (tylko jeśli inne metody nie działają)
-$smtp_success = false;
-if (!empty($smtp_user) && !empty($smtp_pass)) {
-    try {
-        $smtp = fsockopen($smtp_host, $smtp_port, $errno, $errstr, 10);
-        if ($smtp) {
-            // Podstawowa komunikacja SMTP (uproszczona)
-            fgets($smtp, 515);
-            fputs($smtp, "EHLO " . $_SERVER['HTTP_HOST'] . "\r\n");
-            fgets($smtp, 515);
-            fputs($smtp, "AUTH LOGIN\r\n");
-            fgets($smtp, 515);
-            fputs($smtp, base64_encode($smtp_user) . "\r\n");
-            fgets($smtp, 515);
-            fputs($smtp, base64_encode($smtp_pass) . "\r\n");
-            $auth_response = fgets($smtp, 515);
-            
-            if (strpos($auth_response, '235') !== false) {
-                // Autoryzacja OK - wyślij mail
-                fputs($smtp, "MAIL FROM: <" . $from_email . ">\r\n");
-                fgets($smtp, 515);
-                fputs($smtp, "RCPT TO: <" . $to_email . ">\r\n");
-                fgets($smtp, 515);
-                fputs($smtp, "DATA\r\n");
-                fgets($smtp, 515);
-                fputs($smtp, "Subject: " . $email_subject . "\r\n");
-                fputs($smtp, "From: " . $from_email . "\r\n");
-                fputs($smtp, "To: " . $to_email . "\r\n");
-                fputs($smtp, $headers . "\r\n");
-                fputs($smtp, $email_body . "\r\n.\r\n");
-                fgets($smtp, 515);
-                fputs($smtp, "QUIT\r\n");
-                fclose($smtp);
-                
-                $smtp_success = true;
-                logError("Email sent successfully via simple SMTP", [
-                    'to' => $to_email,
-                    'subject' => $form_subject,
-                    'ip' => $client_ip
-                ]);
-                
-                header('Location: ' . $redirect_url);
-                exit;
-            } else {
-                fclose($smtp);
-                logError("SMTP authentication failed", ['response' => $auth_response]);
-            }
-        } else {
-            logError("SMTP connection failed", ['error' => "$errstr ($errno)"]);
-        }
-    } catch (Exception $e) {
-        logError("SMTP exception", ['error' => $e->getMessage()]);
-    }
-}
-
-// Jeśli wszystko się nie powiodło, przekieruj z błędem
-logError("All email sending methods failed - CRITICAL", [
-    'to' => $to_email,
-    'ip' => $client_ip,
-    'mail_function_exists' => function_exists('mail'),
-    'phpmailer_available' => file_exists($phpmailer_path),
-    'smtp_attempted' => !empty($smtp_user) && !empty($smtp_pass)
-]);
-
-// ZAPISZ DANE DO PLIKU JAKO BACKUP (jeśli mail nie działa)
-$backup_file = __DIR__ . '/form-submissions-backup.txt';
-$backup_data = date('Y-m-d H:i:s') . " | " . $name . " | " . $phone . " | " . $email . " | " . $subject . "\n";
-@file_put_contents($backup_file, $backup_data, FILE_APPEND);
-logError("Saved form submission to backup file", ['file' => $backup_file]);
-
-header('Location: ' . $error_url . '&reason=server');
-exit;
 ?>
